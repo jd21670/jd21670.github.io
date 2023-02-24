@@ -2,14 +2,14 @@
 	<head>
 		<script src="https://d3js.org/d3.v7.min.js"></script>
 
-		<svg id="svg" width="500" height="500"></svg>
+		<svg id="svg1" width="500" height="500"></svg>
 		<script>
 			function drawMap(streets)	{
 				var line = d3.line()
 					.x(function(d) { return d.x; })
 					.y(function(d) { return d.y; });
 
-				var svg = d3.select('#svg');
+				var svg = d3.select('svg1');
 
 				streets.forEach(function(d) {
 				svg.append('path')
