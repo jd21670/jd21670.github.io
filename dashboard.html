@@ -5,13 +5,11 @@
 		<svg id="svg" width="500" height="500"></svg>
 		<script>
 			function drawMap(streets)	{
-				var line = d3.svg.line()
+				var line = d3.line()
 					.x(function(d) { return d.x; })
 					.y(function(d) { return d.y; });
 
-				var svg = d3.select('body').append('svg')
-					.attr('width', 500)
-					.attr('height', 500);
+				var svg = d3.select('#svg');
 
 				streets.forEach(function(d) {
 				svg.append('path')
@@ -20,16 +18,14 @@
 					.attr('fill', 'none')
 					.attr('stroke', 'black');
 				});
-
-
-			};
+			}
 			
 
 
 
 
 			d3.json("data/streets.json",function(data) {
-				streets=data;
+				var streets=data;
 				console.log(streets);
 				drawMap(streets);
 			});
