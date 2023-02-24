@@ -13,8 +13,8 @@
         const svg = d3.select("svg");
 
         const line = d3.line()
-          .x(d => d.x*10)
-          .y(d => d.y*10);
+          .x(d => d.x*50)
+          .y(d => d.y*50);
 
         const lineGroups = svg.selectAll("g")
           .data(data)
