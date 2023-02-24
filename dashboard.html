@@ -9,7 +9,7 @@
 					.x(function(d) { return d.x; })
 					.y(function(d) { return d.y; });
 
-				var svg = d3.select('svg1');
+				var svg = d3.select('#svg1');
 
 				streets.forEach(function(d) {
 				svg.append('path')
@@ -19,10 +19,6 @@
 					.attr('stroke', 'black');
 				});
 			}
-			
-
-
-
 
 			d3.json("data/streets.json",function(data) {
 				var streets=data;
