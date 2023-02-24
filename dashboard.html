@@ -11,14 +11,14 @@
 
 				var svg = d3.select('#svg1');
 
-				streets.forEach(function(d) {
-				svg.append('path')
-					.datum(d)
-					.attr('d', line)
-					.attr('fill', 'none')
-					.attr('stroke', 'black');
-				});
-				console.log(d)
+				svg.selectAll(".line")
+   	 			.data(streets)
+    			.enter().append("path")
+    			.style('fill', 'none')
+    			.style('stroke', 'black')
+    			.style('stroke-width', '1px')
+    			.attr("class", "map")
+    			.attr("d", pathGenerator);
 			}
 
 			d3.json("data/streets.json",function(data) {
