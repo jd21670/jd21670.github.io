@@ -5,20 +5,22 @@
 		<svg id="svg1" width="500" height="500"></svg>
 		<script>
 			function drawMap(streets)	{
-				var line = d3.line()
-					.x(function(d) { return d.x; })
-					.y(function(d) { return d.y; });
+				const svg = d3.select("svg1");
 
-				var svg = d3.select('#svg1');
+				const line = d3.line()
+					.x(d => d.x)
+					.y(d => d.y);
 
-				svg.selectAll(".line")
-   	 			.data(streets)
-    			.enter().append("path")
-    			.style('fill', 'none')
-    			.style('stroke', 'black')
-    			.style('stroke-width', '1px')
-    			.attr("class", "map")
-    			.attr("d", pathGenerator);
+				const lineGroups = svg.selectAll("g")
+					.data(streets)
+					.enter()
+					.append("g");
+
+				lineGroups.append("path")
+					.attr("d", d => line(d))
+					.attr("stroke", "black")
+					.attr("stroke-width", 2)
+					.attr("fill", "none");
 			}
 
 			d3.json("data/streets.json",function(data) {
