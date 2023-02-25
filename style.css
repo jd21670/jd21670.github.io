@@ -1,0 +1,38 @@
+.grid { 
+    display: grid;
+    grid-template-columns: 20rem 20rem 20rem 20rem;
+    grid-template-rows: 20rem 20rem;
+    grid-template-areas: 
+    "s1 s1 s2 s3"
+    "s1 s1 s4 s4"
+}
+.s1 { 
+    grid-area: s1;
+    background-color: #FF0000;
+    margin:20px 10px 10px 10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.16);
+}
+.s2 { 
+    grid-area: s2;
+    background-color: #00FF36;
+    margin:20px 10px 10px 10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.16);
+}
+.s3 { 
+    grid-area: s3;
+    background-color: #0030FF;
+    margin:20px 10px 10px 10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.16);
+}
+.s4 {
+    grid-area: s4;
+    background-color: #FF00E4;
+    margin:20px 10px 10px 10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.16);
+}
+
+.header {
+    font-family:Arial;
+    font-size: 50px;
+
+}
