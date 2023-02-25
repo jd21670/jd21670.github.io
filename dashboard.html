@@ -20,8 +20,8 @@
 		var xScale = d3.scaleLinear();
 		var yScale = d3.scaleLinear();
 
-		xScale.domain([0,d3.max(data, function(d) { return d.x })]).range([0, MAP_SIZE]);
-		yScale.domain([d3.max(data, function(d) { return d.y }),0]).range([0, MAP_SIZE]);
+		xScale.domain([0,d3.max(data, function(d) { return d.x; })]).range([0, MAP_SIZE]);
+		yScale.domain([d3.max(data, function(d) { return d.y; }),0]).range([0, MAP_SIZE]);
 
         const line = d3.line()
           .x(d => xScale(d.x))
