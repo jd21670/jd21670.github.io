@@ -17,12 +17,11 @@
       d3.json("data/streets.json").then(function(data) {
         const svg = d3.select("svg");
 
-		var xScale = d3.scale.linear();
-		var yScale = d3.scale.linear();
+		var xScale = d3.scaleLinear();
+		var yScale = d3.scalelinear();
 
 		xScale.domain([0,15]).range([0, MAP_SIZE]);
-		
-		yScale.domain([15,0]).range( [0,MAP_SIZE]);
+		yScale.domain([15,0]).range([0, MAP_SIZE]);
 
         const line = d3.line()
           .x(d => xScale(d.x))
