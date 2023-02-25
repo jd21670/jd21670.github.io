@@ -8,25 +8,25 @@
 }
 .s1 { 
     grid-area: s1;
-    background-color: #FF0000;
+    background-color: #ffffff;
     margin:20px 10px 10px 10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.16);
 }
 .s2 { 
     grid-area: s2;
-    background-color: #00FF36;
+    background-color: #ffffff;
     margin:20px 10px 10px 10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.16);
 }
 .s3 { 
     grid-area: s3;
-    background-color: #0030FF;
+    background-color: #ffffff;
     margin:20px 10px 10px 10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.16);
 }
 .s4 {
     grid-area: s4;
-    background-color: #FF00E4;
+    background-color: #ffffff;
     margin:20px 10px 10px 10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.16);
 }

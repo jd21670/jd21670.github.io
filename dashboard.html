@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>D3 Line Chart</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-  </head>
-  <body>
-    <svg width="750" height="750"></svg>
+	<head>
+		<meta charset="utf-8">
+        <title>Cholera Outbreak of 1854</title>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class = "header">Cholera Outbreak of 1854</div>
+        <div class="grid">
+            <div class="g s1">
+				<svg width="750" height="750"></svg>
+			</div>
+            <div class="g s2"></div>
+            <div class="g s3"></div>
+            <div class="g s4"></div>
+       </div>
+		
+		
 
-    <script>
-		var scale = 40;
-		var shift = 80;
+		<script>
 
-		var MAP_SIZE = 500;
+			var MAP_SIZE = 500;
 
-      d3.json("data/streets.json").then(function(data) {
-        const svg = d3.select("svg");
+			d3.json("data/streets.json").then(function(data) {
+				const svg = d3.select("svg");
 
-		var xScale = d3.scaleLinear();
-		var yScale = d3.scaleLinear();
+				var xScale = d3.scaleLinear();
+				var yScale = d3.scaleLinear();
 
-		var test = d3.max(data, function(d) { return parseFloat(d.x); })
-		console.log(data)
+				xScale.domain([2,20]).range([0, MAP_SIZE]);
+				yScale.domain([20,2]).range([0, MAP_SIZE]);
 
+				const line = d3.line()
+				.x(d => xScale(d.x))
+				.y(d => yScale(d.y));
 
-		xScale.domain([2,20]).range([0, MAP_SIZE]);
-		yScale.domain([20,2]).range([0, MAP_SIZE]);
+				const lineGroups = svg.selectAll("g")
+				.data(data)
+				.enter()
+				.append("g");
 
-        const line = d3.line()
-          .x(d => xScale(d.x))
-          .y(d => yScale(d.y));
-
-        const lineGroups = svg.selectAll("g")
-          .data(data)
-          .enter()
-          .append("g");
-
-        lineGroups.append("path")
-          .attr("d", d => line(d))
-          .attr("stroke", "black")
-          .attr("stroke-width", 2)
-          .attr("fill", "none");
+				lineGroups.append("path")
+				.attr("d", d => line(d))
+				.attr("stroke", "black")
+				.attr("stroke-width", 2)
+				.attr("fill", "none");
 
 
 
-      });
-    </script>
-  </body>
+      		});
+		</script>
+	</body>
 </html>
