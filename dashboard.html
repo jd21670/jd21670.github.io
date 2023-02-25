@@ -20,7 +20,7 @@
 		var xScale = d3.scaleLinear();
 		var yScale = d3.scaleLinear();
 
-		var test = d3.max(data, function(d) { return d.x; })
+		var test = d3.max(data, function(d) { return parseFloat(d.x); })
 		console.log(test)
 
 
