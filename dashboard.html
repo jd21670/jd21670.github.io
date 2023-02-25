@@ -52,7 +52,7 @@
 
 			function drawpumps() {
 				d3.csv("data/pumps.csv").then(function(pumps) {
-					console.log(data)
+					console.log(pumps)
 
 					var dots = d3.select('#svg').append('g');
 
