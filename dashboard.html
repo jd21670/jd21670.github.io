@@ -21,7 +21,7 @@
 		var yScale = d3.scaleLinear();
 
 		var test = d3.max(data, function(d) { return parseFloat(d.x); })
-		console.log(test)
+		console.log(data.x)
 
 
 		xScale.domain([0,18]).range([0, MAP_SIZE]);
