@@ -54,7 +54,7 @@
 				d3.csv("data/pumps.csv").then(function(pumps) {
 					console.log(pumps)
 
-					var dots = d3.select('#svg').append('g');
+					var dots = d3.select('svg').append('g');
 
 					dots.selectAll('circle')
 						.data(pumps)
