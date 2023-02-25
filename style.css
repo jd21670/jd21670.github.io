@@ -1,7 +1,7 @@
 .grid { 
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px;
-    grid-template-rows: 300px 300px ;
+    grid-template-columns: 320px 320px 320px 320px;
+    grid-template-rows: 320px 320px ;
     grid-template-areas: 
     "s1 s1 s2 s3"
     "s1 s1 s4 s4"
@@ -27,7 +27,7 @@
 .s4 {
     grid-area: s4;
     background-color: #ffffff;
-    margin:0px 10px 10px 10px;
+    margin:10px 10px 10px 10px;
     box-shadow:0 3px 10px rgba(0,0,0,0.16);
 }
 
