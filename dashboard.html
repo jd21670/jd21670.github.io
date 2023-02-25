@@ -47,10 +47,10 @@
 				.attr("stroke-width", 2)
 				.attr("fill", "none");
 
-				drawpumps();
+				drawpumps(xScale,yScale);
       		});
 
-			function drawpumps() {
+			function drawpumps(xScale,yScale) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
 					console.log(pumps)
 
