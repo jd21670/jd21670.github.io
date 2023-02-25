@@ -9,12 +9,15 @@
     <svg width="1000" height="1000"></svg>
 
     <script>
+		var scale = 50;
+		var shift = 20;
+
       d3.json("data/streets.json").then(function(data) {
         const svg = d3.select("svg");
 
         const line = d3.line()
-          .x(d => d.x*50)
-          .y(d => d.y*50);
+          .x(d => d.x*scale-shift)
+          .y(d => d.y*scale-shift);
 
         const lineGroups = svg.selectAll("g")
           .data(data)
