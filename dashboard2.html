@@ -53,7 +53,7 @@
 					.on("zoom", zoomed);
 
 				// Apply the zoom behavior to the SVG element
-				d3.line_group.call(zoom);
+				d3.select('line_group').call(zoom);
 
 				drawpumps(x_scaler,y_scaler);
       		});
