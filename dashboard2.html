@@ -45,7 +45,6 @@
 				const line_group = street_map.selectAll("g")
                     .data(street_data)
                     .enter()
-                    .call(zoom)
                     .append("g");
 
                 line_group.append("path")
