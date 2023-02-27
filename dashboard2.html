@@ -47,6 +47,14 @@
                     .attr("stroke-width", 2)
                     .attr("fill", "none");
 
+                // Create zoom behavior and set the minimum and maximum zoom levels
+				let zoom = d3.zoom()
+					.scaleExtent([1, 8])
+					.on("zoom", zoomed);
+
+				// Apply the zoom behavior to the SVG element
+				d3.line_group.call(zoom);
+
 				drawpumps(x_scaler,y_scaler);
       		});
 
@@ -68,7 +76,7 @@
 
 			// Apply the zoom transformation to the SVG elements
 			function zoomed(m) {
-				d3.select("svg g").attr("transform", m.transform);
+				d3.select("line_group").attr("transform", m.transform);
 			};
 		</script>
 	</body>
