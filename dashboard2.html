@@ -21,7 +21,7 @@
 
 		<script>
 
-			var MAP_SIZE = 600;
+			var map_size = 600;
 
 			d3.json("data/streets.json").then(function(street_data) {
 				const street_map = d3.select("map");
@@ -29,8 +29,8 @@
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
 
-				x_scaler.domain([3,20]).range([0, MAP_SIZE]);
-				y_scaler.domain([20,3]).range([0, MAP_SIZE]);
+				x_scaler.domain([3,20]).range([0, map_size]);
+				y_scaler.domain([20,3]).range([0, map_size]);
 
 				var line = d3.line()
                     .x(d => x_scaler(d.x))
@@ -41,7 +41,7 @@
                     .enter()
                     .append("g");
 
-				lineGroups.append("path")
+                line_group.append("path")
                     .attr("d", d => line(d))
                     .attr("stroke", "black")
                     .attr("stroke-width", 2)
