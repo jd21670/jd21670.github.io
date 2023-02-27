@@ -24,13 +24,13 @@
 			var map_size = 600;
 
 			d3.json("data/streets.json").then(function(street_data) {
-				const street_map = d3.select("#map");
+				const street_map = d3.select("#map").call(zoom);
 
 
                 // Create zoom behavior and set the minimum and maximum zoom levels
 				let zoom = d3.zoom()
 					.scaleExtent([1, 8])
-					.on("zoom", zoomed);
+					.on("zoom", zoomed(street_map));
 
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
@@ -54,9 +54,6 @@
                     .attr("fill", "none");
 
 
-				// Apply the zoom behavior to the SVG element
-				line_group.call(zoom);
-
 				drawpumps(x_scaler,y_scaler);
       		});
 
@@ -76,8 +73,8 @@
 			};
 
 			// Apply the zoom transformation to the SVG elements
-			function zoomed(m) {
-				line_group.attr("transform", m.transform);
+			function zoomed(map) {
+				map.selectAll("g").attr("transform", map.transform);
 			};
 		</script>
 	</body>
