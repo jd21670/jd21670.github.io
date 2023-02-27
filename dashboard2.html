@@ -26,7 +26,7 @@
 			d3.json("data/streets.json").then(function(street_data) {
                 // Create zoom behavior and set the minimum and maximum zoom levels
 				let zoom = d3.zoom()
-					.scaleExtent([1, 8])
+					.scaleExtent([0., 2])
 					.on("zoom", zoomed);
 
 
