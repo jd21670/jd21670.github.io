@@ -25,9 +25,14 @@
 				d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
                     var i = 0;
                     var j = 0;
-
                     var det_len = death_details.length;
-                    console.log(det_len);
+
+                    while (i <= det_len) {
+                        console.log(death_details[i]);
+                        i++;
+
+                    }
+                    
 
 
 
