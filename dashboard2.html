@@ -27,7 +27,7 @@
                 // Create zoom behavior and set the minimum and maximum zoom levels
 				let zoom = d3.zoom()
 					.scaleExtent([1, 8])
-					.on("zoom", zoomed(street_map));
+					.on("zoom", zoomed);
 
 
                 const street_map = d3.select("#map").call(zoom);
