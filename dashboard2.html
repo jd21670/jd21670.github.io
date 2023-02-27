@@ -77,11 +77,14 @@
             function handleZoom(e) {
                 d3.select('#map g')
                     .attr('transform', e.transform);
+                
+                console.log("hello")
             }
 
             function initZoom() {
                 d3.select('#map g')
                     .call(zoom);
+                console.log("hi there")
 }
 		</script>
 	</body>
