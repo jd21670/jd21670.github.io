@@ -24,7 +24,7 @@
 			var map_size = 600;
 
 			d3.json("data/streets.json").then(function(street_data) {
-				const street_map = d3.select("map");
+				const street_map = d3.select("#map");
 
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
@@ -54,7 +54,7 @@
 				d3.csv("data/pumps.csv").then(function(pumps) {
 					console.log(pumps)
 
-					var dots = d3.select('map').append('g');
+					var dots = d3.select('#map').append('g');
 
 					dots.selectAll('circle')
 						.data(pumps)
