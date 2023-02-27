@@ -76,7 +76,7 @@
 			// Apply the zoom transformation to the SVG elements
 			function zoomed(e) {
                 const {transform} = e
-                street_map.attr("transform",transform);
+                d3.select("#map").attr("transform",transform);
 			};
 		</script>
 	</body>
