@@ -26,6 +26,12 @@
 			d3.json("data/streets.json").then(function(street_data) {
 				const street_map = d3.select("#map");
 
+
+                // Create zoom behavior and set the minimum and maximum zoom levels
+				let zoom = d3.zoom()
+					.scaleExtent([1, 8])
+					.on("zoom", zoomed);
+
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
 
@@ -39,6 +45,7 @@
 				const line_group = street_map.selectAll("g")
                     .data(street_data)
                     .enter()
+                    .call(zoom)
                     .append("g");
 
                 line_group.append("path")
@@ -47,10 +54,6 @@
                     .attr("stroke-width", 2)
                     .attr("fill", "none");
 
-                // Create zoom behavior and set the minimum and maximum zoom levels
-				let zoom = d3.zoom()
-					.scaleExtent([1, 8])
-					.on("zoom", zoomed);
 
 				// Apply the zoom behavior to the SVG element
 				line_group.call(zoom);
@@ -60,7 +63,6 @@
 
 			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
-					console.log(pumps)
 
 					var dots = d3.select('#map').append('g');
 
