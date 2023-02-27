@@ -24,13 +24,14 @@
 			var map_size = 600;
 
 			d3.json("data/streets.json").then(function(street_data) {
-				const street_map = d3.select("#map").call(zoom);
-
-
                 // Create zoom behavior and set the minimum and maximum zoom levels
 				let zoom = d3.zoom()
 					.scaleExtent([1, 8])
 					.on("zoom", zoomed(street_map));
+
+
+                const street_map = d3.select("#map").call(zoom);
+
 
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
