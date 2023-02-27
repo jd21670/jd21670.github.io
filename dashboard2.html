@@ -31,7 +31,7 @@
 					.scaleExtent([0.5, 2])
 					.on("zoom", zoomed);
 
-                const street_map = d3.select("#map").call(zoom);
+                const street_map = d3.select("#map g").call(zoom);
 
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
@@ -61,7 +61,7 @@
 			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
 
-					var dots = d3.select('#map').append('g');
+					var dots = d3.select('#map g').append('g');
 
 					dots.selectAll('circle')
 						.data(pumps)
