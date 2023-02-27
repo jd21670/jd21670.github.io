@@ -28,6 +28,7 @@
 
 				// Create zoom behavior and set the minimum and maximum zoom levels
 				let zoom = d3.zoom()
+					.scaleExtent([1, 8])
 					.on("zoom", zoomed);
 
 				// Apply the zoom behavior to the SVG element
@@ -76,7 +77,7 @@
 
 			// Apply the zoom transformation to the SVG elements
 			function zoomed(e) {
-				d3.select("svg").attr("transform", e.transform);
+				d3.select("svg").attr("transform", d3.e.transform);
 			};
 		</script>
 	</body>
