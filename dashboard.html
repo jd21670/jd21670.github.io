@@ -32,7 +32,7 @@
 					.on("zoom", zoomed);
 
 				// Apply the zoom behavior to the SVG element
-				svg.call(zoom);
+				d3.select('svg').call(zoom);
 
 				var xScale = d3.scaleLinear();
 				var yScale = d3.scaleLinear();
@@ -76,8 +76,8 @@
 			};
 
 			// Apply the zoom transformation to the SVG elements
-			function zoomed(e) {
-				d3.select("svg").attr("transform", d3.e.transform);
+			function zoomed(m) {
+				d3.select("svg").attr("transform", m.transform);
 			};
 		</script>
 	</body>
