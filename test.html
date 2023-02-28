@@ -80,10 +80,10 @@
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
                 var x_scale = d3.scaleTime;
-                x_scaler.domain([date_min, date_max]).range([0, bar_x]);
+                x_scale.domain([date_min, date_max]).range([0, bar_x]);
 
                 var y_scale = d3.scaleLinear();
-                x_scaler.domain([0,bar_max]).range([bar_y, 0]);
+                y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
                 console.log(x_scale);
                 // X axis
