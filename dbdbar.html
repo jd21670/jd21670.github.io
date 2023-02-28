@@ -13,7 +13,7 @@
             <div class="g s2"></div>
             <div class="g s3"></div>
             <div class="g s4">
-                <svg id = "map" width="800" height="600">
+                <svg id = "map" width="600" height="300">
                     <g></g>
                 </svg>
             </div>
@@ -52,8 +52,8 @@
                 });
 
             function draw_daybar (death_days) {
-                var bar_x = 600,
-                    bar_y = 300,
+                var bar_x = 500,
+                    bar_y = 200,
                     padding = 25;
 
                 bar_max = d3.max(death_days, function (d) {return d.deaths;});
