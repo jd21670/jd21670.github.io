@@ -83,8 +83,7 @@
                         .style("text-anchor", "end");
 
                 svg.append("g")
-                    .call(y_axis)
-                    .attr("transform", "translate(0," + padding +")");
+                    .call(y_axis);
                 
                 svg.selectAll("mybar")
                     .data(death_days)
