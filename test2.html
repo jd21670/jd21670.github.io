@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title>Cholera Outbreak of 1854</title>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+        <svg id = "map" width="2000" height="2000">
+            <g></g>
+        </svg>
+            <script>
+                var bar_x = 600,
+                bar_y = 300,
+                padding = 25;
+
+                //bar_max = d3.max(death_days, function (d) {return d.deaths;});
+                bar_max = 150;
+                //date_min = d3.min(death_days, function (d) {return d.date;});
+                //date_max = d3.max(death_days, function (d) {return d.date;});
+                var date_min = new Date(1854,8,19),
+                date_max = new Date(1854,9,29);
+                //date_first = death_days[0].date;
+                //date_last
+                //console.log("max = ", bar_max);
+                //bar_count = death_days.length;
+                bar_count = 42;
+                //console.log("count = ", bar_count);
+                console.log(date_min, date_max);
+
+
+                // append the svg object to the body of the page
+                var svg = d3.select("#map g")
+                    .append("svg")
+                    .attr("width", bar_x + 2*padding)
+                    .attr("height", bar_y + 2*padding)
+                    .append("g");
+                    //.attr("transform", 'translate(${margin.left},${margin.top})');
+
+                var x_scale = d3.scaleBand();
+                x_scale.domain([date_min, date_max]).range([0, bar_x]);
+
+                var y_scale = d3.scaleLinear();
+                y_scale.domain([0,bar_max]).range([bar_y, 0]);
+
+                xAxis=d3.axisBottom(x_scale)
+
+                svg.append("g")
+                    .call(d3.axisBottom(x_scale))
+                    .selectAll("text")
+                        .attr("transform", "translate(-10,0)rotate(-45)")
+                        .style("text-anchor", "end");
+    </script>
+</body>

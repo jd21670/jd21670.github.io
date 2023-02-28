@@ -74,9 +74,11 @@
 
                 xAxis=d3.axisBottom(x_scale)
 
-                svg.append("g").attr("class","axis")
-                    .attr("transform","translate(0,"+bar_x+")")
-                    .style("stroke","steelblue").call(xAxis)
+                svg.append("g")
+                    .call(d3.axisBottom(x_scale))
+                    .selectAll("text")
+                        .attr("transform", "translate(-10,0)rotate(-45)")
+                        .style("text-anchor", "end");
                 
             }
 
