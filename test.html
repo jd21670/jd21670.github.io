@@ -25,13 +25,14 @@
 
         <script>
             
-            d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: date, deaths: +deaths})).then(function(death_days) {
+            d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
                     d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
                         var i = 0; //detail index
                         var j = 0; //days index
                         var k = 0; //counter
                         var det_len = death_details.length;
                         var day_len = death_days.length;
+                        console.log(death_days);
 
                         while (j < day_len) {
                             //death_details[i].new = "test";
@@ -53,18 +54,19 @@
                 });
 
             function draw_daybar (death_days) {
-                bar_x = 600;
-                bar_y = 300;
-                padding = 50;
+                var bar_x = 600,
+                    bar_y = 300,
+                    padding = 25;
 
                 bar_max = d3.max(death_days, function (d) {return d.deaths;});
+                //date_first = death_days[0].date;
+                //date_last
                 //console.log("max = ", bar_max);
                 bar_count = death_days.length;
                 //console.log("count = ", bar_count);
 
-                var margin = {top: 30, right: 30, bottom: 70, left: 60},
-                    width = 600 - margin.left - margin.right,
-                    height = 300 - margin.top - margin.bottom;
+
+
 
                 // append the svg object to the body of the page
                 var svg = d3.select("#daybar g")
