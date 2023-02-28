@@ -55,10 +55,11 @@
             function draw_daybar (death_days) {
                 bar_x = 600;
                 bar_y = 300;
-                bar_max = d3.max(death_days.deaths);
-                console.log(bar_max);
+
+                bar_max = d3.max(death_days, function (d) {return d.deaths;});
+                console.log("max = ", bar_max);
                 bar_count = death_days.length;
-                console.log(bar_count);
+                console.log("count = ", bar_count);
 
 
 
