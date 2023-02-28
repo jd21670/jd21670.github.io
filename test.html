@@ -33,14 +33,13 @@
                         //death_details[i].new = "test";
                         //console.log(death_details[i].gender);
                         dj = death_days[j].deaths;
-                        if (k==dj) {
-                            j++;
+                        if (k <= dj) {
                             death_details[i].date = death_days[j].date;
-                            k=0;
+                            k++;
                         }
                         else {
                             death_details[i].date = death_days[j].date;
-                            k++;
+                            k=0;
                         }
                         console.log(death_details[i].date);
                         i++;
