@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-        <svg id = "map" width="2000" height="2000">
+        <svg id = "map" width="600" height="300">
             <g></g>
         </svg>
 
@@ -45,7 +45,7 @@
             function draw_daybar (death_days) {
                 var bar_x = 600,
                     bar_y = 300,
-                    padding = 25;
+                    padding = 30;
 
                 bar_max = d3.max(death_days, function (d) {return d.deaths;});
                 date_min = d3.min(death_days, function (d) {return d.date;});
@@ -61,8 +61,8 @@
                 // append the svg object to the body of the page
                 var svg = d3.select("#map g")
                     .append("svg")
-                    .attr("width", bar_x + 2*padding)
-                    .attr("height", bar_y + 2*padding)
+                    .attr("width", bar_x)
+                    .attr("height", bar_y)
                     .append("g");
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
