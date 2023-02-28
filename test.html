@@ -72,14 +72,13 @@
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
-                console.log(y_scale);
+                xAxis=d3.svg.axis()
+                    .scale(x_scale)
+                    .orient("bottom")
+                    .tickFormat(function(e){return""+e});
 
-                svg.append("g")
-                    .attr("transform", "translate(0," + bar_x + ")")
-                    .call(d3.axisBottom(x_scale))
-                    .selectAll("text")
-                    .attr("transform", "translate(-10,0)rotate(-45)")
-                    .style("text-anchor", "end");
+                svg.append("g").attr("class","axis")
+                    .attr("transform","translate(0,"+bar_x+")").call(xAxis);
                 
             }
 
