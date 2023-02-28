@@ -23,8 +23,9 @@
             
             d3.csv("data/deathdays.csv").then(function(death_days) {
 				d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
-                    var i = 0;
-                    var j = 0;
+                    var i = 0; //detail index
+                    var j = 0; //days index
+                    var k = 0; //counter
                     var det_len = death_details.length;
                     var day_len = death_days.length;
 
@@ -32,7 +33,16 @@
                         //death_details[i].new = "test";
                         //console.log(death_details[i].gender);
                         dj = death_days[j].deaths;
-
+                        if (k==dj) {
+                            j++;
+                            death_details[i].date = death_days[j].date;
+                            k=1;
+                        }
+                        else {
+                            death_details[i].date = death_days[j].date;
+                            k++;
+                        }
+                        console.log(death_days[i].date);
                         i++;
 
                     }
