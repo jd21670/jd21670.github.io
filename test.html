@@ -25,7 +25,7 @@
 
         <script>
             
-            d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date), deaths: +deaths})).then(function(death_days) {
+            d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: date, deaths: +deaths})).then(function(death_days) {
                     d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
                         var i = 0; //detail index
                         var j = 0; //days index
@@ -53,12 +53,10 @@
                 });
 
             function draw_daybar (death_days) {
-                console.log(death_days);
-
                 bar_x = 600;
                 bar_y = 300;
-                //bar_max = d3.max(death_days.deaths);
-                console.log(death_days);
+                bar_max = d3.max(death_days.deaths);
+                console.log(bar_max);
                 bar_count = death_days.length;
                 console.log(bar_count);
 
