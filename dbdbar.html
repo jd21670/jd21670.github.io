@@ -7,18 +7,9 @@
         <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div class = "header">Cholera Outbreak of 1854</div>
-        <div class="grid">
-            <div class="g s1"></div>
-            <div class="g s2"></div>
-            <div class="g s3"></div>
-            <div class="g s4">
-                <svg id = "map" width="600" height="300">
-                    <g></g>
-                </svg>
-            </div>
-       </div>
-	<body>
+        <svg id = "map" width="2000" height="2000">
+            <g></g>
+        </svg>
 
 
         <script>
@@ -52,8 +43,8 @@
                 });
 
             function draw_daybar (death_days) {
-                var bar_x = 500,
-                    bar_y = 200,
+                var bar_x = 600,
+                    bar_y = 300,
                     padding = 25;
 
                 bar_max = d3.max(death_days, function (d) {return d.deaths;});
@@ -70,8 +61,8 @@
                 // append the svg object to the body of the page
                 var svg = d3.select("#map g")
                     .append("svg")
-                    .attr("width", bar_x)
-                    .attr("height", bar_y)
+                    .attr("width", bar_x + 2*padding)
+                    .attr("height", bar_y + 2*padding)
                     .append("g");
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
