@@ -87,10 +87,10 @@
                 svg.selectAll("mybar")
                     .data(death_days)
                     .join("rect")
-                        .attr("x", d => x(d.date))
-                        .attr("y", d => y(d.deaths))
+                        .attr("x", d => x_scale(d.date))
+                        .attr("y", d => y_scale(d.deaths))
                         .attr("width", x.bandwidth())
-                        .attr("height", d => bar_y - y(d.deaths))
+                        .attr("height", d => bar_y - y_scale(d.deaths))
                         .attr("fill", "#69b3a2")
                 
             }
