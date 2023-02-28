@@ -89,7 +89,7 @@
                     .join("rect")
                         .attr("x", d => x_scale(d.date))
                         .attr("y", d => y_scale(d.deaths))
-                        .attr("width", x.bandwidth())
+                        .attr("width", x_scale.bandwidth())
                         .attr("height", d => bar_y - y_scale(d.deaths))
                         .attr("fill", "#69b3a2")
                 
