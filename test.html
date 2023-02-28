@@ -25,15 +25,7 @@
 
         <script>
             
-            d3.csv("data/deathdays.csv")    
-                .then(function(death_days) {
-                    death_days.map(function(d) { 
-                        return {
-                            date: d.date,
-                            deaths: +d.deaths
-                        };
-                    });
-
+            d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date), deaths: +deaths})).then(function(death_days) {
                     d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
                         var i = 0; //detail index
                         var j = 0; //days index
@@ -53,7 +45,7 @@
                                 i++;
                             }
                             j++;
-                            }
+                        }
 
                         death_days.deaths = parseInt(death_days.deaths);
                         draw_daybar(death_days);
