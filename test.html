@@ -79,7 +79,7 @@
                     .append("g");
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
-                var x_scale = d3.scale.linear()
+                var x_scale = d3.scaleTime()
                                     .domain([date_min, date_max])
                                     .range([0, bar_x]);
 
