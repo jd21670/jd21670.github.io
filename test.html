@@ -79,11 +79,11 @@
                     .append("g");
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
-                var x_scale = d3.scaleTime()
+                var x_scale = d3.scaleBand()
                                     .domain([date_min, date_max])
                                     .range([0, bar_x]);
 
-                var y_scale = d3.scale.linear()
+                var y_scale = d3.scaleBand()
                                       .range([bar_y, 0])
                                       .domain([0,bar_max]);
                 // X axis
