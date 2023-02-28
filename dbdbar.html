@@ -70,8 +70,8 @@
                 // append the svg object to the body of the page
                 var svg = d3.select("#map g")
                     .append("svg")
-                    .attr("width", bar_x + 2*padding)
-                    .attr("height", bar_y + 2*padding)
+                    .attr("width", bar_x - 2*padding)
+                    .attr("height", bar_y - 2*padding)
                     .append("g");
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
