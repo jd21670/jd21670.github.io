@@ -76,7 +76,7 @@
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
                 var x_scale = d3.scaleTime();
-                x_scale.domain([date_min, date_max]).range([0, bar_x-padding]);
+                x_scale.domain([date_min, date_max]).range([0, bar_x]);
 
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([bar_y, 0]);
