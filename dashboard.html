@@ -10,7 +10,9 @@
 		<div class = "header">Cholera Outbreak of 1854</div>
         <div class="grid">
             <div class="g s1">
-				<svg width="600" height="600"></svg>
+				<svg id = "map" width="600" height="600">
+                    <g></g>
+                </svg>
 			</div>
             <div class="g s2"></div>
             <div class="g s3"></div>
@@ -21,64 +23,69 @@
 
 		<script>
 
-			var MAP_SIZE = 600;
+			var map_size = 600;
 
-			d3.json("data/streets.json").then(function(data) {
-				const svg = d3.select("svg");
+			d3.json("data/streets.json").then(function(street_data) {
 
-				// Create zoom behavior and set the minimum and maximum zoom levels
-				let zoom = d3.zoom()
-					.scaleExtent([1, 8])
-					.on("zoom", zoomed);
+                const street_map = d3.select("#map g");
 
-				// Apply the zoom behavior to the SVG element
-				d3.select('svg g').call(zoom);
+				var x_scaler = d3.scaleLinear();
+				var y_scaler = d3.scaleLinear();
 
-				var xScale = d3.scaleLinear();
-				var yScale = d3.scaleLinear();
+				x_scaler.domain([3,20]).range([0, map_size]);
+				y_scaler.domain([20,3]).range([0, map_size]);
 
-				xScale.domain([3,20]).range([0, MAP_SIZE]);
-				yScale.domain([20,3]).range([0, MAP_SIZE]);
+				var line = d3.line()
+                    .x(d => x_scaler(d.x))
+                    .y(d => y_scaler(d.y));
 
-				const line = d3.line()
-				.x(d => xScale(d.x))
-				.y(d => yScale(d.y));
+				const line_group = street_map.selectAll("g")
+                    .data(street_data)
+                    .enter()
+                    .append("g");
 
-				const lineGroups = svg.selectAll("g")
-				.data(data)
-				.enter()
-				.append("g");
+                line_group.append("path")
+                    .attr("d", d => line(d))
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 2)
+                    .attr("fill", "none");
 
-				lineGroups.append("path")
-				.attr("d", d => line(d))
-				.attr("stroke", "black")
-				.attr("stroke-width", 2)
-				.attr("fill", "none");
 
-				drawpumps(xScale,yScale);
+				drawpumps(x_scaler,y_scaler);
+                initZoom();
+
       		});
 
-			function drawpumps(xScale,yScale) {
+			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
-					console.log(pumps)
 
-					var dots = d3.select('svg').append('g');
+					var dots = d3.select('#map g').append('g');
 
 					dots.selectAll('circle')
 						.data(pumps)
 						.enter().append('circle')
 						.style('fill', 'black')
 						.attr('r', '5px')
-						.attr('cx', function(d) { return xScale(d.x); })
-						.attr('cy', function(d) { return yScale(d.y); });
-							
+						.attr('cx', function(d) { return x_scaler(d.x); })
+						.attr('cy', function(d) { return y_scaler(d.y); });
 				})
 			};
 
-			// Apply the zoom transformation to the SVG elements
-			function zoomed(m) {
-				d3.select("svg g").attr("transform", m.transform);
-			};
+			let zoom = d3.zoom()
+                .on('zoom', handleZoom);
+
+            function handleZoom(e) {
+                d3.select('#map g')
+                    .attr('transform', e.transform);
+                
+                console.log("hello")
+            }
+
+            function initZoom() {
+                d3.select('#map')
+                    .call(zoom);
+                console.log("hi there")
+}
 		</script>
 	</body>
 </html>
