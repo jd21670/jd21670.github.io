@@ -77,8 +77,20 @@
                 svg.append("g")
                     .call(xAxis)
                     .selectAll("text")
-                        .attr("transform", "translate(-10,0)rotate(-45)")
+                        .attr("transform", "translate(-10,0)rotate(-90)")
                         .style("text-anchor", "end");
+
+                svg.append("g")
+                    .call(y_axis);
+                
+                svg.selectAll("mybar")
+                    .data(death_days)
+                    .join("rect")
+                        .attr("x", d => x(d.date))
+                        .attr("y", d => y(d.deaths))
+                        .attr("width", x.bandwidth())
+                        .attr("height", d => bar_y - y(d.deaths))
+                        .attr("fill", "#69b3a2")
                 
             }
 

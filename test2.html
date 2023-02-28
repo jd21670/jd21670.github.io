@@ -44,12 +44,16 @@
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
-                xAxis=d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
+                x_axis = d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
+                y_axis = d3.axisLeft(y_scale)
 
                 svg.append("g")
-                    .call(xAxis)
+                    .call(x_axis)
                     .selectAll("text")
-                        .attr("transform", "translate(-10,0)rotate(-45)")
+                        .attr("transform", "translate(-12,8)rotate(-70)")
                         .style("text-anchor", "end");
+
+                svg.append("g")
+                    .call(y_axis);
     </script>
 </body>
