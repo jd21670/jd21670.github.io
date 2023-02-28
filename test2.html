@@ -38,16 +38,16 @@
                     .append("g");
                     //.attr("transform", 'translate(${margin.left},${margin.top})');
 
-                var x_scale = d3.scaleBand();
+                var x_scale = d3.scaleTime();
                 x_scale.domain([date_min, date_max]).range([0, bar_x]);
 
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
-                xAxis=d3.axisBottom(x_scale)
+                xAxis=d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
 
                 svg.append("g")
-                    .call(d3.axisBottom(x_scale))
+                    .call(xAxis)
                     .selectAll("text")
                         .attr("transform", "translate(-10,0)rotate(-45)")
                         .style("text-anchor", "end");
