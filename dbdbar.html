@@ -70,20 +70,21 @@
                 x_scale.domain([date_min, date_max]).range([0, bar_x-padding]);
 
                 var y_scale = d3.scaleLinear();
-                y_scale.domain([0,bar_max]).range([bar_y-padding, 0]);
+                y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
                 x_axis = d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
                 y_axis = d3.axisLeft(y_scale)
 
                 svg.append("g")
                     .call(x_axis)
-                    .attr("transform", "translate(0," + bar_y +")")
+                    .attr("transform", "translate(0," + bar_y-padding +")")
                     .selectAll("text")
                         .attr("transform", "translate(-10,7)rotate(-70)")
                         .style("text-anchor", "end");
 
                 svg.append("g")
-                    .call(y_axis);
+                    .call(y_axis)
+                    .attr("transform", "translate(0," + padding +")");
                 
                 svg.selectAll("mybar")
                     .data(death_days)
