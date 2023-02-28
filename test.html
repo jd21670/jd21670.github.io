@@ -75,7 +75,8 @@
                 xAxis=d3.axisBottom(x_scale)
 
                 svg.append("g").attr("class","axis")
-                    .attr("transform","translate(0,"+bar_x+")").call(xAxis)
+                    .attr("transform","translate(0,"+bar_x+")")
+                    .style("stroke","steelblue").call(xAxis)
                 
             }
 
