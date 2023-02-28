@@ -72,9 +72,7 @@
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
-                xAxis=d3.svg.axis()
-                    .scale(x_scale)
-                    .orient("bottom")
+                xAxis=d3.axisBottom(x_scale)
 
                 svg.append("g").attr("class","axis")
                     .attr("transform","translate(0,"+bar_x+")").call(xAxis)
