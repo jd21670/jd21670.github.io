@@ -25,32 +25,40 @@
 
         <script>
             
-            d3.csv("data/deathdays.csv").then(function(death_days) {
-				d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
-                    var i = 0; //detail index
-                    var j = 0; //days index
-                    var k = 0; //counter
-                    var det_len = death_details.length;
-                    var day_len = death_days.length;
+            d3.csv("data/deathdays.csv")
+                .row(function(d) {
+                    return {
+                        date: d.date,
+                        deaths: d.deaths.parseInt()
 
-                    while (j < day_len) {
-                        //death_details[i].new = "test";
-                        //console.log(death_details[i].gender);
-                        deaths = death_days[j].deaths;
+                    };
+                })            
+                .then(function(death_days) {
+                    d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
+                        var i = 0; //detail index
+                        var j = 0; //days index
+                        var k = 0; //counter
+                        var det_len = death_details.length;
+                        var day_len = death_days.length;
 
-                        for (k = 0; k < deaths; k++) {
-                            death_details[i].date = death_days[j].date;
-                            death_details[i].daynum = j;
-                            //console.log(death_details[i]);
-                            i++;
-                        }
-                        j++;
-                    }
+                        while (j < day_len) {
+                            //death_details[i].new = "test";
+                            //console.log(death_details[i].gender);
+                            deaths = death_days[j].deaths;
 
-                    death_days.deaths = parseInt(death_days.deaths);
-                    draw_daybar(death_days);
+                            for (k = 0; k < deaths; k++) {
+                                death_details[i].date = death_days[j].date;
+                                death_details[i].daynum = j;
+                                //console.log(death_details[i]);
+                                i++;
+                            }
+                            j++;
+                            }
+
+                        death_days.deaths = parseInt(death_days.deaths);
+                        draw_daybar(death_days);
+                    });
                 });
-            });
 
             function draw_daybar (death_days) {
                 console.log(death_days);
