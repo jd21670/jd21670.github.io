@@ -75,7 +75,7 @@
                 xAxis=d3.axisBottom(x_scale)
 
                 svg.append("g")
-                    .call(d3.axisBottom(x_scale))
+                    .call(xAxis)
                     .selectAll("text")
                         .attr("transform", "translate(-10,0)rotate(-45)")
                         .style("text-anchor", "end");
