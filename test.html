@@ -14,7 +14,11 @@
                     <g></g>
                 </svg>
             </div>
-            <div class="g s2"></div>
+            <div class="g s2">
+                <svg id = "daybar" width="600" height="300">
+                    <g></g>
+                </svg>
+            </div>
             <div class="g s3"></div>
             <div class="g s4"></div>
         </div>
@@ -37,19 +41,15 @@
                         for (k = 0; k < deaths; k++) {
                             death_details[i].date = death_days[j].date;
                             death_details[i].daynum = j;
-                            console.log(death_details[i]);
+                            //console.log(death_details[i]);
                             i++;
                         }
                         j++;
                     }
-                    
-
-
-
                 });
             });
 
-
+            console.log(death_details)
 
         </script>
 	</body>
