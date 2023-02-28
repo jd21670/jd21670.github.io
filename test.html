@@ -30,9 +30,9 @@
                     death_days.map(function(d) { 
                         return {
                             date: d.date,
-                            deaths: parseInt(d.deaths)
+                            deaths: +d.deaths
                         };
-                    } );
+                    });
 
                     d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
                         var i = 0; //detail index
