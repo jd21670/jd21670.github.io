@@ -132,7 +132,7 @@
                 var stackedSeries = stack(death_details);
                 
                 var x_scale = d3.scaleOrdinal();
-                x_scale.domain(stackedSeries.map(function(d) { return d.agegroup; }))
+                x_scale.domain(death_details.map(function(d) { return d.agegroup; }))
                     .range(0,width);
 
                 var colors = d3.scaleOrdinal();
