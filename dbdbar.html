@@ -34,11 +34,11 @@
                             for (k = 0; k < deaths; k++) {
                                 death_details[i].date = death_days[j].date;
                                 death_details[i].daynum = j;
-                                if (age <= 10) {death_details[i].agegroup = "0-10"}
-                                else if (age <= 20) {death_details[i].agegroup = "11-20"}
-                                else if (age <= 40) {death_details[i].agegroup = "21-40"}
-                                else if (age <= 60) {death_details[i].agegroup = "41-60"}
-                                else if (age <= 80) {death_details[i].agegroup = "61-80"}
+                                if (death_details[i].age <= 10) {death_details[i].agegroup = "0-10"}
+                                else if (death_details[i].age <= 20) {death_details[i].agegroup = "11-20"}
+                                else if (death_details[i].age <= 40) {death_details[i].agegroup = "21-40"}
+                                else if (death_details[i].age <= 60) {death_details[i].agegroup = "41-60"}
+                                else if (death_details[i].age <= 80) {death_details[i].agegroup = "61-80"}
                                 else {death_details[i].agegroup = ">80"};
                                 console.log(death_details[i]);
                                 i++;
