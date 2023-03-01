@@ -135,6 +135,10 @@
                 x_scale.domain(["0-10","11-20","21-40","41-60","61-80",">80"])
                     .range(0,width);
 
+                var colors = d3.scaleOrdinal();
+                colors.domain(["male","female"])
+                    .range("blue","pink");
+
                 var y_scale = d3.scaleLinear();
                 y_scale.domain(0,bar_max).range(height,0);
 
@@ -163,7 +167,7 @@
                     .data(stackedSeries)
                     .join('g')
                     .classed('series', true)
-                    .style('fill', (d) => colorScale(d.key));
+                    .style('fill', (d) => colors(d.key));
                 
                 // For each series create a rect element for each month
                 sel.selectAll('rect')
