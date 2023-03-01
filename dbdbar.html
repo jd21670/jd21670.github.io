@@ -121,10 +121,27 @@
             }
 
             function draw_agebar (death_details) {
+                var margin = {top: 50, right: 30, bottom: 50, left: 30},
+                    width = 600 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+
+                bar_max = 200;
+                  
                 var stack = d3.stack()
                     .keys(["agegroup"]);
       
-                var stackedSeries = stack(data);
+                var stackedSeries = stack(death_details);
+                
+                var x_scale = d3.scaleOrdinal();
+                x_scale.domain(["0-10","11-20","21-40","41-60","61-80",">80"])
+                    .range(0,width);
+
+                var y_scale = d3.saleLinear();
+                y_scale.domain(0,bar_max).range(height,0);
+
+                x_axis = d3.axisBottom(x_scale)
+                y_axis = d3.axisLeft(y_scale)
+
 
                 console.log(stackedSeries);
 
