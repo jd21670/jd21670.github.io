@@ -124,7 +124,7 @@
       
                 var stackedSeries = stack(death_details);
                 
-                var x_scale = d3.scaleOrdinal();
+                var x_scale = d3.scaleLinear();
                 x_scale.domain([0,5])
                     .range(0,width);
 
