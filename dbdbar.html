@@ -70,7 +70,7 @@
                 x_scale.domain([date_min, date_max]).range([0, bar_x-padding]);
 
                 var y_scale = d3.scaleLinear();
-                y_scale.domain([0,bar_max]).range([bar_y-padding, 0]);
+                y_scale.domain([0,bar_max]).range([bar_y, 0]);
 
                 x_axis = d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
                 y_axis = d3.axisLeft(y_scale)
