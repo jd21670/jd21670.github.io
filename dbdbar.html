@@ -136,7 +136,7 @@
                 x_scale.domain(["0-10","11-20","21-40","41-60","61-80",">80"])
                     .range(0,width);
 
-                var y_scale = d3.saleLinear();
+                var y_scale = d3.scaleLinear();
                 y_scale.domain(0,bar_max).range(height,0);
 
                 x_axis = d3.axisBottom(x_scale)
