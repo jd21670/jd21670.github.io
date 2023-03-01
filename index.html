@@ -1,7 +1,38 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+<head>
+    <meta charset="utf-8">
+    <title>Cholera Outbreak of 1854</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://vega.github.io/datalib/datalib.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+var test = [  
+   {  
+      "age":"0-10",
+      "gender":"male",
+      "qty":60
+   },
+   {  
+      "age":"0-10",
+      "gender":"female",
+      "qty":60
+   },
+   {  
+      "age":"0-10",
+      "gender":"female",
+      "qty":60
+   },
+];
+
+
+
+
+var dl = require('datalib');
+
+var counts = dl.groupby(age, gender).count().execute(test);
+console.log(counts);
+
+
+
+</script>
