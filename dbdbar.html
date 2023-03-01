@@ -43,9 +43,9 @@
                 });
 
             function draw_daybar (death_days) {
-                var bar_x = 570,
-                    bar_y = 270,
-                    padding = 30;
+                var margin = {top: 0, right: 20, bottom: 30, left: 40},
+                    width = 600 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
 
                 bar_max = d3.max(death_days, function (d) {return d.deaths;});
                 date_min = d3.min(death_days, function (d) {return d.date;});
@@ -61,23 +61,23 @@
                 // append the svg object to the body of the page
                 var svg = d3.select("#map g")
                     .append("svg")
-                    .attr("width", bar_x)
-                    .attr("height", bar_y)
+                    .attr("width", width)
+                    .attr("height", height)
                     .append("g")
                     .attr("transform", "translate(30,0)");
 
                 var x_scale = d3.scaleTime();
-                x_scale.domain([date_min, date_max]).range([0, bar_x-padding]);
+                x_scale.domain([date_min, date_max]).range([0, width]);
 
                 var y_scale = d3.scaleLinear();
-                y_scale.domain([0,bar_max]).range([bar_y-padding, 0]);
+                y_scale.domain([0,bar_max]).range([height, 0]);
 
                 x_axis = d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
                 y_axis = d3.axisLeft(y_scale)
 
                 svg.append("g")
                     .call(x_axis)
-                    .attr("transform", "translate(0," + bar_y +")")
+                    .attr("transform", "translate(0," + height +")")
                     .selectAll("text")
                         .attr("transform", "translate(-10,7)rotate(-70)")
                         .style("text-anchor", "end");
@@ -90,7 +90,7 @@
                     .join("rect")
                         .attr("x", d => x_scale(d.date))
                         .attr("y", d => y_scale(d.deaths))
-                        .attr("width", (bar_x/bar_count)*.95)
+                        .attr("width", (width/bar_count)*.95)
                         .attr("height", d => bar_y - y_scale(d.deaths))
                         .attr("fill", "#aaaaaa")
                 
