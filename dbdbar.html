@@ -91,7 +91,7 @@
                         .attr("x", d => x_scale(d.date))
                         .attr("y", d => y_scale(d.deaths))
                         .attr("width", (width/bar_count)*.95)
-                        .attr("height", d => bar_y - y_scale(d.deaths))
+                        .attr("height", d => height - y_scale(d.deaths))
                         .attr("fill", "#aaaaaa")
                 
             }
