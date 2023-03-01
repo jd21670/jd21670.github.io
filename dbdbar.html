@@ -93,6 +93,14 @@
                         .attr("width", (width/bar_count)*.95)
                         .attr("height", d => height - y_scale(d.deaths))
                         .attr("fill", "#aaaaaa")
+
+                svg.append("text")
+                    .attr("x", (width / 2))             
+                    .attr("y", 0 - (margin.top / 2))
+                    .attr("text-anchor", "middle")  
+                    .style("font-size", "16px")
+                    .style("font-family", "Arial")
+                    .text("Deaths by Day");
                 
             }
 
