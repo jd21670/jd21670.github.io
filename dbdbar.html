@@ -45,7 +45,6 @@
                                 if (death_details[i].gender == 0) {death_details[i].male = 1; death_details[i].female = 0;}
                                 else {death_details[i].male = 0; death_details[i].female = 1;}
 
-                                console.log(death_details[i]);
                                 i++;
                             }
                             j++;
@@ -142,6 +141,13 @@
                 x_axis = d3.axisBottom(x_scale)
                 y_axis = d3.axisLeft(y_scale)
 
+                var svg = d3.select("#dba")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
                 svg.append("g")
                     .call(x_axis)
                     .attr("transform", "translate(0," + height +")")
@@ -153,9 +159,7 @@
                     .call(y_axis);
                 
                 // Create a g element for each series
-                var sel = d3.select("#dba")
-                    .select('g')
-                    .selectAll('g.series')
+                svg.selectAll('g.series')
                     .data(stackedSeries)
                     .join('g')
                     .classed('series', true)
