@@ -8,7 +8,6 @@
 	</head>
 	<body>
         <svg id = "map" height = 300 width = 600>
-            <g></g>
         </svg>
 
 
@@ -59,7 +58,7 @@
 
 
                 // append the svg object to the body of the page
-                var svg = d3.select("#map g")
+                var svg = d3.select("#map")
                     .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
