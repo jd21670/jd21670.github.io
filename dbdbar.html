@@ -17,7 +17,10 @@
         <script>
             
             d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
-                    d3.csv("data/deaths_age_sex.csv").then(function(death_details) {
+                    d3.csv("data/deaths_age_sex.csv", ({x,y,age,gender}) => ({x: x,
+                                                                              y: y,
+                                                                              age: +age,
+                                                                              gender: +gender})).then(function(death_details) {
                         var i = 0; //detail index
                         var j = 0; //days index
                         var k = 0; //counter
