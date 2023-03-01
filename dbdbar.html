@@ -44,7 +44,7 @@
 
             function draw_daybar (death_days) {
                 var bar_x = 600,
-                    bar_y = 300,
+                    bar_y = 270,
                     padding = 30;
 
                 bar_max = d3.max(death_days, function (d) {return d.deaths;});
@@ -64,7 +64,7 @@
                     .attr("width", bar_x)
                     .attr("height", bar_y)
                     .append("g")
-                    .attr("transform", "translate(50,200)");
+                    .attr("transform", "translate(30,0)");
 
                 var x_scale = d3.scaleTime();
                 x_scale.domain([date_min, date_max]).range([0, bar_x-padding]);
