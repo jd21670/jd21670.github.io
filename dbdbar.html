@@ -34,12 +34,17 @@
                             for (k = 0; k < deaths; k++) {
                                 death_details[i].date = death_days[j].date;
                                 death_details[i].daynum = j;
+
                                 if (death_details[i].age <= 10) {death_details[i].agegroup = "0-10"}
                                 else if (death_details[i].age <= 20) {death_details[i].agegroup = "11-20"}
                                 else if (death_details[i].age <= 40) {death_details[i].agegroup = "21-40"}
                                 else if (death_details[i].age <= 60) {death_details[i].agegroup = "41-60"}
                                 else if (death_details[i].age <= 80) {death_details[i].agegroup = "61-80"}
                                 else {death_details[i].agegroup = ">80"};
+
+                                if (death_details[i].gender == 0) {death_details[i].male = 1; death_details[i].female = 0;}
+                                else {death_details[i].male = 0; death_details[i].female = 1;}
+
                                 console.log(death_details[i]);
                                 i++;
                             }
@@ -116,9 +121,12 @@
             }
 
             function draw_agebar (death_details) {
-                var agg1 = d3.group(death_details, d=> d.agegroup, d=>d.gender);
+                var stack = d3.stack()
+                    .keys(["agegroup"]);
+      
+                var stackedSeries = stack(data);
 
-                console.log(agg1);
+                console.log(stackedSeries);
 
 
             }
