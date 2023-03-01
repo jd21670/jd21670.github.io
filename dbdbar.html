@@ -64,7 +64,7 @@
                     .attr("width", bar_x)
                     .attr("height", bar_y)
                     .append("g")
-                    .attr("transform", "translate(0,"+padding+")");
+                    .attr("transform", "translate(50,200)");
 
                 var x_scale = d3.scaleTime();
                 x_scale.domain([date_min, date_max]).range([0, bar_x-padding]);
