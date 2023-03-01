@@ -63,7 +63,7 @@
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
-                    "translate(" + margin.left + "," + margin.top + ")";
+                    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
 
                 var x_scale = d3.scaleTime();
