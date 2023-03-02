@@ -131,11 +131,11 @@
                 
                 var x_scale = d3.scaleBand();
                 x_scale.domain(death_details.map(function(d) { return d.age; }))
-                    .range(0,width);
+                    .range([0,width]);
 
                 var colors = d3.scaleOrdinal();
                 colors.domain(["male","female"])
-                    .range("blue","pink");
+                    .range(["blue","pink"]);
 
                 var y_scale = d3.scaleLinear();
                 y_scale.domain(0,bar_max).range(height,0);
