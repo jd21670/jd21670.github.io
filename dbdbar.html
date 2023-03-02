@@ -207,9 +207,26 @@
                         .attr("width",(width/bar_count)*.95)
 
                 console.log(stackedSeries);
+                draw_table(age_data);
             }
 
+            function draw_table(age_data) {
+                var temp = {male: 0, female: 0, total: 0}
 
+                for (i = 0; i < age_data.length; i++) {
+                    temp.male += age_data[i].male;
+                    temp.female += age_data[i].female;
+                    temp.total += age_data[i].total;
+
+                    age_data[i].total = age_data[i].male + age_data[i].female
+
+                }
+
+                age_data[6] = [{male: temp.male, female: temp.female, total: temp.total}];
+
+            }
+
+            console.log(age_data)
         </script>
 	</body>
 </html>
