@@ -210,23 +210,23 @@
                 draw_table(age_data);
             }
 
-            function draw_table(age_data) {
+            function draw_table(table_data) {
                 var temp = {Male: 0, Female: 0, Total: 0}
 
                 for (i = 0; i < age_data.length; i++) {
-                    age_data[i].Total = age_data[i].Male + age_data[i].Female
-                    temp.Male += age_data[i].Male;
-                    temp.Female += age_data[i].Female;
-                    temp.Total += age_data[i].Total;
+                    table_data[i].Total = table_data[i].Male + table_data[i].Female
+                    temp.Male += table_data[i].Male;
+                    temp.Female += table_data[i].Female;
+                    temp.Total += table_data[i].Total;
                 }
 
-                age_data[6] = {Age: "Total", Male: temp.Male, Female: temp.Female, Total: temp.Total};
+                table_data[6] = {Age: "Total", Male: temp.Male, Female: temp.Female, Total: temp.Total};
 
-                console.log(age_data)
+                console.log(table_data)
 
-                var columns = Object.keys(age_data[0]);
+                var columns = Object.keys(table_data[0]);
 
-                var rows  = age_data
+                var rows  = table_data
 
                 var table = d3.select("body").append('table');
                 var thead = table.append('thead');
@@ -240,7 +240,7 @@
 
                 	// create a row for each object in the data
                 var rows = tbody.selectAll('tr')
-                .data(age_data)
+                .data(table_data)
                 .enter()
                 .append('tr');
 
