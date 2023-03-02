@@ -136,18 +136,18 @@
                 console.log(death_details);
 
                 var age_data = [
-                    { agegroup: "<10", male: 0, female: 0 },
-                    { agegroup: "11-20", male: 0, female: 0 },
-                    { agegroup: "21-40", male: 0, female: 0 },
-                    { agegroup: "41-60", male: 0, female: 0 },
-                    { agegroup: "61-80", male: 0, female: 0 },
-                    { agegroup: ">80", male: 0, female: 0 }
+                    { Age: "<10", Male: 0, Female: 0 },
+                    { Age: "11-20", Male: 0, Female: 0 },
+                    { Age: "21-40", Male: 0, Female: 0 },
+                    { Age: "41-60", Male: 0, Female: 0 },
+                    { Age: "61-80", Male: 0, Female: 0 },
+                    { Age: ">80", Male: 0, Female: 0 }
                     ];
 
                 for (i=0;i<death_details.length; i++) {
                     //console.log(death_details[i].agegroup);
-                    age_data[death_details[i].age].male+=death_details[i].male;
-                    age_data[death_details[i].age].female+=death_details[i].female;
+                    age_data[death_details[i].age].Male+=death_details[i].Male;
+                    age_data[death_details[i].age].Female+=death_details[i].Female;
 
                 };
                 
@@ -211,27 +211,22 @@
             }
 
             function draw_table(age_data) {
-                var temp = {male: 0, female: 0, total: 0}
+                var temp = {Male: 0, Female: 0, Total: 0}
 
                 for (i = 0; i < age_data.length; i++) {
-  
-
                     age_data[i].total = age_data[i].male + age_data[i].female
                     temp.male += age_data[i].male;
                     temp.female += age_data[i].female;
                     temp.total += age_data[i].total;
                 }
 
-                age_data[6] = {agegroup: "Total", male: temp.male, female: temp.female, total: temp.total};
+                age_data[6] = {Age: "Total", Male: temp.male, Female: temp.female, Total: temp.total};
 
                 console.log(age_data)
 
                 var columns = Object.keys(age_data[0]);
 
-                var rows  = age_data,
-                    table = d3.select('body').append('table')
-                                .style("border-collapse", "collapse")
-                                .style("border", "2px black solid");
+                var rows  = age_data
 
                 var table = d3.select("body").append('table');
                 var thead = table.append('thead');
@@ -259,13 +254,7 @@
                 .enter()
                 .append('td')
                     .text(function (d) { return d.value; });
-
-
-
-
             }
-
-           
         </script>
 	</body>
 </html>
