@@ -185,7 +185,7 @@
                         .attr("x", function(d) { return x_scale(d.data.agegroup); })
                         .attr("y", function(d) { return y_scale(d[1]); })
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
-                        .attr("width",x.bandwidth())
+                        .attr("width",x_scale.bandwidth())
 
                 console.log(stackedSeries);
             }
