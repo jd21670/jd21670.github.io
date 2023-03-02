@@ -15,7 +15,8 @@
                     { agegroup: ">80", male: 0, female: 0 }
                     ];
 
-                console.log(age_data);
-                //age_data[5].male += 1;
-                console.log(age_data);
+                var stack = d3.stack().keys([ "male", "female"]);
+                var stacked = stack(age_data);
+
+                console.log(stacked);
 </script>

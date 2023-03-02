@@ -157,8 +157,7 @@
                 
                 bar_max = 200;
                   
-                var stack = d3.stack()
-                    .keys(["age"]);
+                var stack = d3.stack().keys([ "male", "female"]);
       
                 var stackedSeries = stack(age_data);
                 
