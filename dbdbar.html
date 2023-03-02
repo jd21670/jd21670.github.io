@@ -135,6 +135,25 @@
                 
                 console.log(death_details);
 
+                var age_data = [
+                    { agegroup: "<10", male: 0, female: 0 },
+                    { agegroup: "11-20", male: 0, female: 0 },
+                    { agegroup: "21-40", male: 0, female: 0 },
+                    { agegroup: "41-60", male: 0, female: 0 },
+                    { agegroup: "61-80", male: 0, female: 0 },
+                    { agegroup: ">80", male: 0, female: 0 }
+                    ];
+
+                for (i=0;i<death_details.length; i++) {
+                    age_data[death_details[i].agegroup].male+=death_details[i].male;
+                    age_data[death_details[i].agegroup].female+=death_details[i].female;
+
+                };
+                
+                console.log(age_data);
+                
+                
+                
                 bar_max = 200;
                   
                 var stack = d3.stack()
