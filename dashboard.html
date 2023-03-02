@@ -85,7 +85,247 @@
                 d3.select('#map')
                     .call(zoom);
                 console.log("hi there")
-}
+			}
+
+			d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
+                    d3.csv("data/deaths_age_sex.csv", ({x,y,age,gender}) => ({x: x,
+                                                                              y: y,
+                                                                              age: +age,
+                                                                              gender: +gender})).then(function(death_details) {
+                        var i = 0; //detail index
+                        var j = 0; //days index
+                        var k = 0; //counter
+                        var det_len = death_details.length;
+                        var day_len = death_days.length;
+                        //console.log(death_days);
+
+                        while (j < day_len) {
+                            //death_details[i].new = "test";
+                            //console.log(death_details[i].gender);
+                            deaths = death_days[j].deaths;
+
+
+                            for (k = 0; k < deaths; k++) {
+                                death_details[i].date = death_days[j].date;
+                                death_details[i].daynum = j;
+
+                                //
+                                if (death_details[i].gender == 0) {death_details[i].male = 1; death_details[i].female = 0;}
+                                else {death_details[i].male = 0; death_details[i].female = 1;}
+
+                                //Create age group mapping
+                                if (death_details[i].age == 0) {death_details[i].agegroup = "<10"}
+                                else if (death_details[i].age == 1) {death_details[i].agegroup = "11-20"}
+                                else if (death_details[i].age == 2) {death_details[i].agegroup = "21-40"}
+                                else if (death_details[i].age == 3) {death_details[i].agegroup = "41-60"}
+                                else if (death_details[i].age == 4) {death_details[i].agegroup = "61-80"}
+                                else if (death_details[i].age == 5) {death_details[i].agegroup = ">80"}
+
+
+
+                                i++;
+                            }
+                            j++;
+                        }
+
+                        death_days.deaths = parseInt(death_days.deaths);
+                        draw_daybar(death_days);
+                        draw_agebar(death_details);
+                    });
+                });
+
+            function draw_daybar (death_days) {
+                var margin = {top: 50, right: 30, bottom: 50, left: 30},
+                    width = 600 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+
+                bar_max = d3.max(death_days, function (d) {return d.deaths;});
+                date_min = d3.min(death_days, function (d) {return d.date;});
+                date_max = d3.max(death_days, function (d) {return d.date;});
+                //date_first = death_days[0].date;
+                //date_last
+                //console.log("max = ", bar_max);
+                bar_count = death_days.length;
+                //console.log("count = ", bar_count);
+                console.log(date_min, date_max);
+
+
+                // append the svg object to the body of the page
+                var svg = d3.select("#map")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+
+                var x_scale = d3.scaleTime();
+                x_scale.domain([date_min, date_max]).range([0, width]);
+
+                var y_scale = d3.scaleLinear();
+                y_scale.domain([0,bar_max]).range([height, 0]);
+
+                x_axis = d3.axisBottom(x_scale).tickFormat(d3.timeFormat('%b-%d'))
+                y_axis = d3.axisLeft(y_scale)
+
+                svg.append("g")
+                    .call(x_axis)
+                    .attr("transform", "translate(0," + height +")")
+                    .selectAll("text")
+                        .attr("transform", "translate(-10,7)rotate(-70)")
+                        .style("text-anchor", "end");
+
+                svg.append("g")
+                    .call(y_axis);
+                
+                svg.selectAll("mybar")
+                    .data(death_days)
+                    .join("rect")
+                        .attr("x", d => x_scale(d.date))
+                        .attr("y", d => y_scale(d.deaths))
+                        .attr("width", (width/bar_count)*.95)
+                        .attr("height", d => height - y_scale(d.deaths))
+                        .attr("fill", "#aaaaaa");
+
+                svg.append("text")
+                    .attr("x", (width / 2))             
+                    .attr("y", 0 - (margin.top / 2))
+                    .attr("text-anchor", "middle")  
+                    .style("font-size", "16px")
+                    .style("font-family", "Arial")
+                    .text("Deaths by Day");
+
+
+               
+            }
+
+            function draw_agebar (death_details) {
+                var margin = {top: 50, right: 30, bottom: 50, left: 30},
+                    width = 300 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+                
+                console.log(death_details);
+
+                var age_data = [
+                    { Age: "<10", Male: 0, Female: 0 },
+                    { Age: "11-20", Male: 0, Female: 0 },
+                    { Age: "21-40", Male: 0, Female: 0 },
+                    { Age: "41-60", Male: 0, Female: 0 },
+                    { Age: "61-80", Male: 0, Female: 0 },
+                    { Age: ">80", Male: 0, Female: 0 }
+                    ];
+
+                for (i=0;i<death_details.length; i++) {
+                    //console.log(death_details[i].agegroup);
+                    age_data[death_details[i].age].Male+=death_details[i].male;
+                    age_data[death_details[i].age].Female+=death_details[i].female;
+
+                };
+                
+                console.log(age_data);
+                
+                
+                
+                bar_max = 200;
+                  
+                var stack = d3.stack().keys([ "Male", "Female"]);
+      
+                var stackedSeries = stack(age_data);
+                var bar_count = age_data.length;
+                var x_scale = d3.scaleBand();
+                x_scale.domain(age_data.map(function(d) { return d.Age; }))
+                    .range([0,width]);
+
+                var colors = d3.scaleOrdinal();
+                colors.domain(["Male","Female"])
+                    .range(["blue","pink"]);
+
+                var y_scale = d3.scaleLinear();
+                y_scale.domain([0,bar_max]).range([height,0]);
+
+                x_axis = d3.axisBottom(x_scale)
+                y_axis = d3.axisLeft(y_scale)
+
+                var svg = d3.select("#dba")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+                svg.append("g")
+                    .call(x_axis)
+                    .attr("transform", "translate(0," + height +")");
+
+
+                svg.append("g")
+                    .call(y_axis);
+               
+                // Show the bars
+                svg.append("g")
+                    .selectAll("g")
+                    // Enter in the stack data = loop key per key = group per group
+                    .data(stackedSeries)
+                    .enter().append("g")
+                    .attr("fill", function(d) { return colors(d.key); })
+                    .selectAll("rect")
+                    // enter a second time = loop subgroup per subgroup to add all rectangles
+                    .data(function(d) { return d; })
+                    .enter().append("rect")
+                        .attr("x", function(d) { return x_scale(d.data.Age); })
+                        .attr("y", function(d) { return y_scale(d[1]); })
+                        .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
+                        .attr("width",(width/bar_count)*.95)
+
+                console.log(stackedSeries);
+                draw_table(age_data);
+            }
+
+            function draw_table(table_data) {
+                var temp = {Male: 0, Female: 0, Total: 0}
+
+                for (i = 0; i < table_data.length; i++) {
+                    table_data[i].Total = table_data[i].Male + table_data[i].Female
+                    temp.Male += table_data[i].Male;
+                    temp.Female += table_data[i].Female;
+                    temp.Total += table_data[i].Total;
+                }
+
+                table_data[6] = {Age: "Total", Male: temp.Male, Female: temp.Female, Total: temp.Total};
+
+                console.log(table_data)
+
+                var columns = Object.keys(table_data[0]);
+
+                var rows  = table_data
+
+                var table = d3.select("body").append('table');
+                var thead = table.append('thead');
+                var tbody = table.append('tbody');
+
+                thead.append('tr')
+                    .selectAll('th')
+                    .data(columns).enter()
+                    .append('th')
+                        .text(function (d) { return d; });
+
+                	// create a row for each object in the data
+                var rows = tbody.selectAll('tr')
+                .data(table_data)
+                .enter()
+                .append('tr');
+
+                // create a cell in each row for each column
+                var cells = rows.selectAll('td')
+                .data(function (row) {
+                    return columns.map(function (column) {
+                    return {column: column, value: row[column]};
+                    });
+                })
+                .enter()
+                .append('td')
+                    .text(function (d) { return d.value; });
+            }
 		</script>
 	</body>
 </html>
