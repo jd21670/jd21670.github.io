@@ -214,13 +214,13 @@
                 var temp = {Male: 0, Female: 0, Total: 0}
 
                 for (i = 0; i < age_data.length; i++) {
-                    age_data[i].total = age_data[i].male + age_data[i].female
-                    temp.male += age_data[i].male;
-                    temp.female += age_data[i].female;
-                    temp.total += age_data[i].total;
+                    age_data[i].Total = age_data[i].Male + age_data[i].Female
+                    temp.Male += age_data[i].Male;
+                    temp.Female += age_data[i].Female;
+                    temp.Total += age_data[i].Total;
                 }
 
-                age_data[6] = {Age: "Total", Male: temp.male, Female: temp.female, Total: temp.total};
+                age_data[6] = {Age: "Total", Male: temp.Male, Female: temp.Female, Total: temp.Total};
 
                 console.log(age_data)
 
