@@ -213,7 +213,7 @@
             function draw_table(table_data) {
                 var temp = {Male: 0, Female: 0, Total: 0}
 
-                for (i = 0; i < age_data.length; i++) {
+                for (i = 0; i < table_data.length; i++) {
                     table_data[i].Total = table_data[i].Male + table_data[i].Female
                     temp.Male += table_data[i].Male;
                     temp.Female += table_data[i].Female;
