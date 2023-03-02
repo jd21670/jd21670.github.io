@@ -130,7 +130,7 @@
                 var stackedSeries = stack(death_details);
                 
                 var x_scale = d3.scaleBand();
-                x_scale.domain(0,5)
+                x_scale.domain([0,1,2,3,4,5])
                     .range(0,width);
 
                 var colors = d3.scaleOrdinal();
