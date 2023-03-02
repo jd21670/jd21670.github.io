@@ -14,9 +14,9 @@
                     <g></g>
                 </svg>
 			</div>
-            <div class="g s2"></div>
-            <div class="g s3"></div>
-            <div class="g s4"></div>
+            <div class="g s2"><svg id = "agebar" width="600" height="300"></svg></div>
+            <div class="g s3" id = "table"></div>
+            <div class="g s4"><svg id = "daybar" width="600" height="300"></svg></div>
        </div>
 		
 		
@@ -151,7 +151,7 @@
 
 
                 // append the svg object to the body of the page
-                var svg = d3.select("#map")
+                var svg = d3.select("#daybar")
                     .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
@@ -246,7 +246,7 @@
                 x_axis = d3.axisBottom(x_scale)
                 y_axis = d3.axisLeft(y_scale)
 
-                var svg = d3.select("#dba")
+                var svg = d3.select("#agebar")
                     .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
@@ -299,7 +299,7 @@
 
                 var rows  = table_data
 
-                var table = d3.select("body").append('table');
+                var table = d3.select("#table").append('table');
                 var thead = table.append('thead');
                 var tbody = table.append('tbody');
 
