@@ -129,7 +129,7 @@
       
                 var stackedSeries = stack(death_details);
                 
-                var x_scale = d3.scaleLinear();
+                var x_scale = d3.scaleBand();
                 x_scale.domain(0,5)
                     .range(0,width);
 
@@ -152,10 +152,8 @@
 
                 svg.append("g")
                     .call(x_axis)
-                    .attr("transform", "translate(0," + height +")")
-                    .selectAll("text")
-                        .attr("transform", "translate(-10,7)rotate(-70)")
-                        .style("text-anchor", "end");
+                    .attr("transform", "translate(0," + height +")");
+
 /*
                 svg.append("g")
                     .call(y_axis);
