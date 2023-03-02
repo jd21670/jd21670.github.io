@@ -38,8 +38,19 @@
                                 death_details[i].date = death_days[j].date;
                                 death_details[i].daynum = j;
 
+                                //
                                 if (death_details[i].gender == 0) {death_details[i].male = 1; death_details[i].female = 0;}
                                 else {death_details[i].male = 0; death_details[i].female = 1;}
+
+                                //Create age group mapping
+                                if (death_details[i].age == 0) {death_details[i].agegroup = "<10"}
+                                else if (death_details[i].age == 1) {death_details[i].agegroup = "11-20"}
+                                else if (death_details[i].age == 2) {death_details[i].agegroup = "21-40"}
+                                else if (death_details[i].age == 3) {death_details[i].agegroup = "41-60"}
+                                else if (death_details[i].age == 4) {death_details[i].agegroup = "61-80"}
+                                else if (death_details[i].age == 5) {death_details[i].agegroup = ">80"}
+
+
 
                                 i++;
                             }
@@ -130,7 +141,7 @@
                 var stackedSeries = stack(death_details);
                 
                 var x_scale = d3.scaleBand();
-                x_scale.domain([0,5])
+                x_scale.domain(death_details.map(function(d) { return d.agegroup; }))
                     .range([0,width]);
 
                 var colors = d3.scaleOrdinal();
