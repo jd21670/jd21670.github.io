@@ -160,7 +160,7 @@
                 var stack = d3.stack().keys([ "male", "female"]);
       
                 var stackedSeries = stack(age_data);
-                
+                var bar_count = age_data.length;
                 var x_scale = d3.scaleBand();
                 x_scale.domain(age_data.map(function(d) { return d.agegroup; }))
                     .range([0,width]);
@@ -204,7 +204,7 @@
                         .attr("x", function(d) { return x_scale(d.data.agegroup); })
                         .attr("y", function(d) { return y_scale(d[1]); })
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
-                        .attr("width",x_scale.bandwidth())
+                        .attr("width",(width/bar_count)*.95)
 
                 console.log(stackedSeries);
             }
