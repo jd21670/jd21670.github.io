@@ -157,16 +157,16 @@
                 
                 bar_max = 200;
                   
-                var stack = d3.stack().keys([ "male", "female"]);
+                var stack = d3.stack().keys([ "Male", "Female"]);
       
                 var stackedSeries = stack(age_data);
                 var bar_count = age_data.length;
                 var x_scale = d3.scaleBand();
-                x_scale.domain(age_data.map(function(d) { return d.agegroup; }))
+                x_scale.domain(age_data.map(function(d) { return d.Age; }))
                     .range([0,width]);
 
                 var colors = d3.scaleOrdinal();
-                colors.domain(["male","female"])
+                colors.domain(["Male","Female"])
                     .range(["blue","pink"]);
 
                 var y_scale = d3.scaleLinear();
