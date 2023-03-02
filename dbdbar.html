@@ -129,7 +129,7 @@
       
                 var stackedSeries = stack(death_details);
                 
-                var x_scale = d3.scaleBand();
+                var x_scale = d3.scaleLinear();
                 x_scale.domain(death_details.map(function(d) { return d.age; }))
                     .range([0,width]);
 
