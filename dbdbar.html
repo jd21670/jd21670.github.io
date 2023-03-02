@@ -214,15 +214,15 @@
                 var temp = {male: 0, female: 0, total: 0}
 
                 for (i = 0; i < age_data.length; i++) {
+  
+
+                    age_data[i].total = age_data[i].male + age_data[i].female
                     temp.male += age_data[i].male;
                     temp.female += age_data[i].female;
                     temp.total += age_data[i].total;
-
-                    age_data[i].total = age_data[i].male + age_data[i].female
-
                 }
 
-                age_data[6] = [{male: temp.male, female: temp.female, total: temp.total}];
+                age_data[6] = [{agegroup: "Total", male: temp.male, female: temp.female, total: temp.total}];
 
                 console.log(age_data)
 
