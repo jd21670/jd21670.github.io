@@ -149,7 +149,7 @@
                     .range(["blue","pink"]);
 
                 var y_scale = d3.scaleLinear();
-                y_scale.domain(0,bar_max).range(height,0);
+                y_scale.domain([0,bar_max]).range([height,0]);
 
                 x_axis = d3.axisBottom(x_scale)
                 y_axis = d3.axisLeft(y_scale)
