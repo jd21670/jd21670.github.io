@@ -224,9 +224,48 @@
 
                 age_data[6] = [{male: temp.male, female: temp.female, total: temp.total}];
 
+                console.log(age_data)
+
+                var columns = Object.keys(age_data[0]);
+
+                var rows  = age_data,
+                    table = d3.select('body').append('table')
+                                .style("border-collapse", "collapse")
+                                .style("border", "2px black solid");
+
+                var table = d3.select("body").append('table');
+                var thead = table.append('thead');
+                var tbody = table.append('tbody');
+
+                thead.append('tr')
+                    .selectAll('th')
+                    .data(columns).enter()
+                    .append('th')
+                        .text(function (d) { return d; });
+
+                	// create a row for each object in the data
+                var rows = tbody.selectAll('tr')
+                .data(age_data)
+                .enter()
+                .append('tr');
+
+                // create a cell in each row for each column
+                var cells = rows.selectAll('td')
+                .data(function (row) {
+                    return columns.map(function (column) {
+                    return {column: column, value: row[column]};
+                    });
+                })
+                .enter()
+                .append('td')
+                    .text(function (d) { return d.value; });
+
+
+
+
             }
 
-            console.log(age_data)
+           
         </script>
 	</body>
 </html>
