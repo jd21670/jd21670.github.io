@@ -41,8 +41,8 @@ table {
     border: 3px solid #000000;
     background-color: #EEEEEE;
     border-collapse: collapse;
-    width: 90%;
-    height: 90%;
+    width: 88%;
+    height: 80%;
     text-align: center;
 }
 
@@ -55,7 +55,7 @@ table th {
     text-align: center;
     font-family: arial;
     font-size: 20px;
-    width:30%;
+    width:22%;
 
 }
 table td {
