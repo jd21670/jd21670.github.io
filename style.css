@@ -54,7 +54,7 @@ table th {
     padding: 5px;
     text-align: center;
     font-family: arial;
-    font-size: 20px;
+    font-size: 18px;
     width:22%;
 
 }
@@ -66,5 +66,9 @@ table td {
     text-align: center;
     font-family: arial;
     font-size: 15px;
+}
 
+table tr:last-child {
+    font-size: 18px;
+    font-family: arial;
 }
