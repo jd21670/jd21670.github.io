@@ -36,3 +36,35 @@
     font-size: 50px;
 
 }
+
+.table {
+    border: 3px solid #000000;
+    background-color: #EEEEEE;
+    border-collapse: collapse;
+    width: 90%;
+    height: 90%;
+    text-align: center;
+}
+
+table th {
+    border-width: 3px;
+    border-color: #000000;
+    background-color: #aaaaaa;
+    border-style: solid;
+    padding: 5px;
+    text-align: center;
+    font-family: arial;
+    font-size: 20px;
+    width:30%;
+
+}
+table td {
+    border-width: 3px;
+    border-color: #000000;
+    border-style: solid;
+    padding: 5px;
+    text-align: center;
+    font-family: arial;
+    font-size: 15px;
+
+}
