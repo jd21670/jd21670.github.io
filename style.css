@@ -58,6 +58,8 @@ table th {
     width:22%;
 
 }
+
+
 table td {
     border-width: 3px;
     border-color: #000000;
@@ -69,6 +71,7 @@ table td {
 }
 
 table tr:last-child {
-    font-size: 18px;
+    font-size: 20px !important;
     font-family: arial;
+    font-weight: bold;
 }
