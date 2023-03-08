@@ -53,19 +53,18 @@
 
 				drawpumps(x_scaler,y_scaler);
 				label_streets(x_scaler,y_scaler);
-				draw_whbrew(x_scaler,y_scaler);
+				draw_whbrew();
                 initZoom();
 
       		});
 
-			function draw_whbrew(x_scaler, y_scaler) {
+			function draw_whbrew() {
 				var work_house = d3.select('#map g').append('g');
 
 				wh_x = 225;
 				wh_y = 225;
 
 				work_house.selectAll('rect')
-					.enter()
 					.append('rect')
 					.style('fill','#dddddd')
 					.attr('height','30px')
