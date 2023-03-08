@@ -85,11 +85,11 @@
 
 				names.selectAll('text')
 
-				names.selectAll(".place-label")
+				names.selectAll("street_names")
           		.data(street_names)
           		.enter()
 				.append("text")
-				.attr("id","h2")
+				.attr("id","street_names")
 				.attr("transform", function (d) 
 					{ return "rotate(" + d.r + ")"; })
 				.attr("x", function(d) { return d.x; })
