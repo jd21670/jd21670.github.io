@@ -61,7 +61,7 @@
 				d3.csv("data/pumps.csv").then(function(pumps) {
 
 					var dots = d3.select('#map g').append('g');
-
+					/*
 					dots.selectAll('circle')
 						.data(pumps)
 						.enter().append('circle')
@@ -69,6 +69,16 @@
 						.attr('r', '5px')
 						.attr('cx', function(d) { return x_scaler(d.x); })
 						.attr('cy', function(d) { return y_scaler(d.y); });
+					*/
+					dots.selectAll('rect')
+						.data(pumps)
+						.enter().append('rect')
+						.style('fill', 'black')
+						.attr('height', '5px')
+						.attr('width', '5px')
+						.attr('x', function(d) { return x_scaler(d.x); })
+						.attr('y', function(d) { return y_scaler(d.y); });
+
 				})
 			};
 
