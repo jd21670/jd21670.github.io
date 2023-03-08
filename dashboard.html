@@ -90,8 +90,8 @@
 				.append("text")
 				.attr("transform", function (d) 
 					{ return "rotate(" + d.r + ")"; })
-				.attr("x", function(d) { return x_scaler(d.x); })
-				.attr("y", function(d) { return y_scaler(d.y); })
+				.attr("x", function(d) { return d.x; })
+				.attr("y", function(d) { return d.y; })
            		.text(function(d) { return d.name; });
 			}
 
