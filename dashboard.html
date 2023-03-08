@@ -66,7 +66,7 @@
 			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
 
-					var dots = d3.select('#map g').append('g');
+					var pump_lab = d3.select('#map g').append('g');
 					/*
 					dots.selectAll('circle')
 						.data(pumps)
@@ -76,7 +76,7 @@
 						.attr('cx', function(d) { return x_scaler(d.x); })
 						.attr('cy', function(d) { return y_scaler(d.y); });
 					*/
-					dots.selectAll('rect')
+					pump_lab.selectAll('rect')
 						.data(pumps)
 						.enter()
 						.append('rect')
@@ -88,20 +88,21 @@
 
 				})
 				
+				var labs = [{x: 225, y: 225, r: -35, fill: '#dddddd', w: '30px', h: '30px', name: 'WH'},
+							{x: 500, y: 500, r: -35, fill: '#aaaaaa', w: '30px', h: '30px', name: 'BH'}]
+				
 				var work_house = d3.select('#map g').append('g');
 
-				wh_x = 225;
-				wh_y = 225;
-
 				work_house.selectAll('rect')
-					.append('rect')
+					.data(labs)
 					.enter()
-					.style('fill','#dddddd')
-					.attr('height','30px')
-					.attr('width','30px')
-					//.attr("transform", "rotate(" + -35 + "," + wh_x + "," + wh_y +")")
-					.attr("x", wh_x)
-					.attr("y", wh_y)
+					.append('rect')
+					.style('fill', function(d) {return d.fill})
+					.attr('height',function(d) {return d.h})
+					.attr('width', function(d) {return d.w})
+					.attr("transform", function (d) {return "rotate(" + d.r + "," + d.x + "," + d.y +")")
+					.attr("x", function(d) {return d.x})
+					.attr("y", function(d) {return d.y})
 			};
 
 			function label_streets(x_scaler,y_scaler) {
