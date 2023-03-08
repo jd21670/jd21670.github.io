@@ -88,8 +88,8 @@
 
 				})
 				
-				var labs = [{x: 250, y: 250, r: -35, fill: '#dddddd', w: '30px', h: '30px', name: 'WH'},
-							{x: 350, y: 291, r: -35, fill: '#aaaaaa', w: '30px', h: '30px', name: 'BH'}]
+				var labs = [{x: 275, y: 240, r: -30, fill: '#dddddd', w: '40px', h: '40px', name: 'WH'},
+							{x: 350, y: 291, r: -30, fill: '#aaaaaa', w: '15px', h: '30px', name: 'BH'}]
 				
 				var work_house = d3.select('#map g').append('g');
 
@@ -103,6 +103,19 @@
 					.attr("transform", function (d) {return "rotate(" + d.r + "," + d.x + "," + d.y +")"})
 					.attr("x", function(d) {return d.x})
 					.attr("y", function(d) {return d.y})
+/*
+				names.selectAll("street_names")
+					.data(street_names)
+					.enter()
+					.append("text")
+					.attr("id","street_names")
+					.attr("font-family","arial")
+					.attr("font-size","14px")
+					.attr("transform", function (d) 
+						{ return "rotate(" + d.r + ")"; })
+					.attr("x", function(d) { return d.x; })
+					.attr("y", function(d) { return d.y; })
+					.text(function(d) { return d.name; });*/
 			};
 
 			function label_streets(x_scaler,y_scaler) {
