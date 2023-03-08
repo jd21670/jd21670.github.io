@@ -88,7 +88,7 @@
 				names.selectAll("street_names")
           		.data(street_names)
           		.enter()
-				.append("text")
+				.append("h2")
 				.attr("id","street_names")
 				.attr("transform", function (d) 
 					{ return "rotate(" + d.r + ")"; })
