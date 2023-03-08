@@ -59,20 +59,7 @@
       		});
 
 			function draw_whbrew() {
-				var work_house = d3.select('#map g').append('g');
 
-				wh_x = 225;
-				wh_y = 225;
-
-				work_house.selectAll('rect')
-					.append('rect')
-					.enter()
-					.style('fill','#dddddd')
-					.attr('height','30px')
-					.attr('width','30px')
-					//.attr("transform", "rotate(" + -35 + "," + wh_x + "," + wh_y +")")
-					.attr("x", wh_x)
-					.attr("y", wh_y)
 
 			}
 
@@ -100,6 +87,21 @@
 						.attr('y', function(d) { return y_scaler(d.y); });
 
 				})
+				
+				var work_house = d3.select('#map g').append('g');
+
+				wh_x = 225;
+				wh_y = 225;
+
+				work_house.selectAll('rect')
+					.append('rect')
+					.enter()
+					.style('fill','#dddddd')
+					.attr('height','30px')
+					.attr('width','30px')
+					//.attr("transform", "rotate(" + -35 + "," + wh_x + "," + wh_y +")")
+					.attr("x", wh_x)
+					.attr("y", wh_y)
 			};
 
 			function label_streets(x_scaler,y_scaler) {
