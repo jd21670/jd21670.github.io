@@ -52,6 +52,7 @@
 
 
 				drawpumps(x_scaler,y_scaler);
+				label_streets(x_scaler,y_scaler);
                 initZoom();
 
       		});
@@ -70,6 +71,31 @@
 						.attr('cy', function(d) { return y_scaler(d.y); });
 				})
 			};
+
+			function label_streets(x_scaler,y_scaler) {
+				var street_names = [
+                    { x: 10, y: 2, r: -10 , name: "Oxford Street"},
+                    { x: 5, y: 10, r: 70 , name: "Recent Street"},
+                    { x: 18, y: 5, r: -10 , name: "Sono Square"},
+                    { x: 12, y: 15, r: -20 , name: "Brewer Street"}
+                    ];
+
+				var names = d3.select('#map g').append('g');
+
+				names.selectAll('text')
+
+				names.selectAll(".place-label")
+          		.data(street_names)
+          		.enter()
+				.append("text")
+				.attr("transform", function (d) 
+					{ return "rotate(" + d.r + " " + d.x + "," + d.y+ ")"; })
+				.attr("x", function(d) { return x_scaler(d.x); })
+				.attr("y", function(d) { return y_scaler(d.y); })
+                .attr("dy", ".35em")
+           		.text(function(d) { return d.name; });
+			}
+
 
 			let zoom = d3.zoom()
                 .on('zoom', handleZoom);
