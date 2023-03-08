@@ -89,6 +89,7 @@
           		.data(street_names)
           		.enter()
 				.append("text")
+				.attr("id","h2")
 				.attr("transform", function (d) 
 					{ return "rotate(" + d.r + ")"; })
 				.attr("x", function(d) { return d.x; })
