@@ -53,9 +53,29 @@
 
 				drawpumps(x_scaler,y_scaler);
 				label_streets(x_scaler,y_scaler);
+				draw_whbrew(x_scaler,y_scaler);
                 initZoom();
 
       		});
+
+			function draw_whbrew(x_scaler, y_scaler) {
+				var work_house = d3.select('#map g').append('g');
+
+				wh_x = 225;
+				wh_y = 225;
+
+				work_house.selectAll('rect')
+					.enter()
+					.append('rect')
+					.style('fill','#dddddd')
+					.attr('height','30px')
+					.attr('width','30px')
+					.attr("transform", function (d) 
+						{ return "rotate(" + -35 + "," + wh_x + "," + wh_y +")"})
+					.attr("x", wh_x)
+					.attr("y", wh_y)
+
+			}
 
 			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
@@ -72,10 +92,11 @@
 					*/
 					dots.selectAll('rect')
 						.data(pumps)
-						.enter().append('rect')
+						.enter()
+						.append('rect')
 						.style('fill', 'black')
-						.attr('height', '5px')
-						.attr('width', '5px')
+						.attr('height', '10px')
+						.attr('width', '10px')
 						.attr('x', function(d) { return x_scaler(d.x); })
 						.attr('y', function(d) { return y_scaler(d.y); });
 
