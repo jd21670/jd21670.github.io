@@ -40,7 +40,7 @@
 h1 {
     margin: 0 auto;
     font-family: arial;
-    font-size: 12px;
+    font-size: 14px;
     padding-top: 10px;
     padding-bottom: 5px;
     text-align: center;
@@ -69,7 +69,7 @@ table th {
     padding: 5px;
     text-align: center;
     font-family: arial;
-    font-size: 18px;
+    font-size: 14px;
     width:22%;
 
 }
@@ -82,11 +82,11 @@ table td {
     padding: 5px;
     text-align: center;
     font-family: arial;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 table tr:last-child {
-    font-size: 20px !important;
+    font-size: 14px !important;
     font-family: arial;
     font-weight: bold;
 }
