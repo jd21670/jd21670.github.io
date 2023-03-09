@@ -194,6 +194,7 @@
             function clear_graphs() {
                 d3.selectAll("circle").remove();
                 d3.selectAll("#grpbar").remove();
+                d3.selectAll("#tabletext").remove();
 
             }
 
@@ -395,6 +396,7 @@
                 })
                 .enter()
                 .append('td')
+                    .attr('id','tabletext')
                     .text(function (d) { return d.value; });
                 }
 		</script>
