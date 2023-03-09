@@ -328,7 +328,8 @@
                 function get_max(data) {
                     var bmax = 0;
                     for (i=0;i<data.length-1;i++) {
-                        if (data[i].Total > bmax) {bmax = data[i].Total}
+                        console.log(data[i].Total);
+                        if (data[i].Total > bmax) {bmax = data[i].Total;}
                     }
                     return bmax;
                 }
