@@ -40,6 +40,9 @@
 			var x_scaler = d3.scaleLinear();
 			var y_scaler = d3.scaleLinear();
 
+            var date_from = new Date("1854-08-19");
+            var date_to = new Date("1854-09-29")
+
             document.getElementById("date_from").addEventListener("change", function() {
                 var input = this.value;
                 var date_from = new Date(input);
@@ -226,7 +229,7 @@
             function filter_table(data,date) {
                 data_out = [];
                 for (i=0; i<data.length; i++) {
-                    if (data[i].date <= date) {data_out.push(data[i])}
+                    if (data[i].date <= date && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
                 }
                 console.log(data_out)
                 return data_out;
@@ -234,7 +237,7 @@
             function filter_table_oneday(data,date) {
                 data_out = [];
                 for (i=0; i<data.length; i++) {
-                    if (data[i].date == date) {data_out.push(data[i])}
+                    if (data[i].date == date  && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
                 }
                 console.log(data_out)
                 return data_out;
