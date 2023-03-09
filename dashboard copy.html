@@ -23,8 +23,10 @@
                 <h1>Age Group & Sex Table</Table></h1>
             </div>
             <div class="g s4">
-                <input type = "date" id="date_from" name="From:" value="1854-08-19" min="1854-08-19" max="1854-09-29"></input>
-                <input type = "date" id="date_to"   name="To:"   value="1854-09-29" min="1854-08-19" max="1854-09-29"></input>
+                <input type = "date" id="date_from" name="from" value="1854-08-19" min="1854-08-19" max="1854-09-29"></input>
+                <input type = "date" id="date_to"   name="to"   value="1854-09-29" min="1854-08-19" max="1854-09-29"></input>
+                <input type = "button" id = "date_apply" name= "apply" type="button" value="Apply Date Range" onclick="apply_dates()"></input>
+                <input type = "button" id = "reset_all" name= "reset" type="button" value="Reset" onclick="reset_graph()"></input>
                 <h1>Deaths by Day</h1>
                 <svg id = "daybar" width="600" height="300">
                 </svg>
