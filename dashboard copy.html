@@ -193,6 +193,7 @@
 
             function clear_graphs() {
                 d3.selectAll("circle").remove();
+                d3.selectAll("grpbar").remove();
 
             }
 
@@ -341,6 +342,7 @@
                     // enter a second time = loop subgroup per subgroup to add all rectangles
                     .data(function(d) { return d; })
                     .enter().append("rect")
+                        .attr("id", "grpbar")
                         .attr("x", function(d) { return x_scale(d.data.Age); })
                         .attr("y", function(d) { return y_scale(d[1]); })
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
