@@ -312,9 +312,9 @@
             }
 
             function draw_agebar (data) {
-                var margin = {top: 50, right: 30, bottom: 50, left: 30},
+                var margin = {top: 50, right: 30, bottom: 75, left: 30},
                     width = 300 - margin.left - margin.right,
-                    height = 250 - margin.top - margin.bottom;
+                    height = 300 - margin.top - margin.bottom;
                 
                 age_data = calc_table(data);
                 
@@ -372,10 +372,10 @@
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
                         .attr("width",(width/bar_count)*.95)
                 
-                svg.append("rect").attr("x",50).attr("y",200).attr("height", 6).attr("width",6).style("fill", "blue")
-                svg.append("rect").attr("x",175).attr("y",200).attr("height", 6).attr("width",6).style("fill", "pink")
-                svg.append("text").attr("x", 55).attr("y", 200).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
-                svg.append("text").attr("x", 180).attr("y", 200).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
+                svg.append("rect").attr("x",50).attr("y",250).attr("height", 6).attr("width",6).style("fill", "blue")
+                svg.append("rect").attr("x",175).attr("y",250).attr("height", 6).attr("width",6).style("fill", "pink")
+                svg.append("text").attr("x", 55).attr("y", 250).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+                svg.append("text").attr("x", 180).attr("y", 250).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
                 
                 console.log(stackedSeries);
                 draw_table(age_data);
