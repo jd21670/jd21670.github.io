@@ -323,10 +323,10 @@
                 
                 age_data = calc_table(data);
                 console.log(age_data)
-                //bar_max = 200;
+                bar_max = 200;
                  
-                bar_max =  d3.max(age_data, function (d) {return d.Total;})
-
+                bar_max2 =  d3.max(age_data, function (d) {return d.Total;})
+                console.log(bar_max2);
                 var stack = d3.stack().keys([ "Male", "Female"]);
       
                 var stackedSeries = stack(age_data);
