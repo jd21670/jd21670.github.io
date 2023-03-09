@@ -53,29 +53,17 @@
 
 				drawpumps(x_scaler,y_scaler);
 				label_streets(x_scaler,y_scaler);
-				draw_whbrew();
                 initZoom();
 
       		});
 
-			function draw_whbrew() {
 
-
-			}
 
 			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
 
 					var pump_lab = d3.select('#map g').append('g');
-					/*
-					dots.selectAll('circle')
-						.data(pumps)
-						.enter().append('circle')
-						.style('fill', 'black')
-						.attr('r', '5px')
-						.attr('cx', function(d) { return x_scaler(d.x); })
-						.attr('cy', function(d) { return y_scaler(d.y); });
-					*/
+
 					pump_lab.selectAll('rect')
 						.data(pumps)
 						.enter()
@@ -103,19 +91,7 @@
 					.attr("transform", function (d) {return "rotate(" + d.r + "," + d.x + "," + d.y +")"})
 					.attr("x", function(d) {return d.x})
 					.attr("y", function(d) {return d.y})
-/*
-				names.selectAll("street_names")
-					.data(street_names)
-					.enter()
-					.append("text")
-					.attr("id","street_names")
-					.attr("font-family","arial")
-					.attr("font-size","14px")
-					.attr("transform", function (d) 
-						{ return "rotate(" + d.r + ")"; })
-					.attr("x", function(d) { return d.x; })
-					.attr("y", function(d) { return d.y; })
-					.text(function(d) { return d.name; });*/
+
 			};
 
 			function label_streets(x_scaler,y_scaler) {
@@ -206,8 +182,25 @@
                         death_days.deaths = parseInt(death_days.deaths);
                         draw_daybar(death_days);
                         draw_agebar(death_details);
+						draw_deaths(death_details, x_scaler, y_scaler);
                     });
                 });
+
+			function draw_deaths(death_details) {
+				var death_points = d3.select("#map g");
+
+				death_points.append('circle')
+				.data(death_deatils)
+				.enter()
+				.append('circle')
+				.style('fill','black')
+				.attr('r', '3px')
+				.attr('cx', function(d) {return x_scaler(d.x)})
+				.attr('cy', function(d) {return y_scaler(d.y)})
+
+
+			}
+
 
             function draw_daybar (death_days) {
                 var margin = {top: 50, right: 30, bottom: 50, left: 30},
