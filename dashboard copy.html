@@ -333,11 +333,13 @@
 
                 svg.append("g")
                     .call(x_axis)
+                    .attr("id","grpbar")
                     .attr("transform", "translate(0," + height +")");
 
 
                 svg.append("g")
-                    .call(y_axis);
+                    .call(y_axis)
+                    .attr("id","grpbar");
                
                 // Show the bars
                 svg.append("g")
