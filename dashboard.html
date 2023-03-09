@@ -255,11 +255,13 @@
                 svg.selectAll("mybar")
                     .data(death_days)
                     .join("rect")
-                        .attr("x", d => x_scale(d.date))
-                        .attr("y", d => y_scale(d.deaths))
-                        .attr("width", (width/bar_count)*.95)
-                        .attr("height", d => height - y_scale(d.deaths))
-                        .attr("fill", "#aaaaaa");
+					.attr("x", d => x_scale(d.date))
+					.attr("y", d => y_scale(d.deaths))
+					.attr("width", (width/bar_count)*.95)
+					.attr("height", d => height - y_scale(d.deaths))
+					.attr("fill", "#aaaaaa")
+					.on("click", function(d) {console.log('the fuck just happened')})
+
 
                 svg.append("text")
                     .attr("x", (width / 2))             
