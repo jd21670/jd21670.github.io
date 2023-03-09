@@ -195,7 +195,7 @@
 			function draw_deaths(death_details,x_scaler,y_scaler) {
 				var death_points = d3.select('#map g').append('g');
 
-				death_points.append('circle')
+				death_points.selectAll('circle')
 				.data(death_details)
 				.enter()
 				.append('circle')
