@@ -126,14 +126,11 @@
             function handleZoom(e) {
                 d3.select('#map g')
                     .attr('transform', e.transform);
-                
-                console.log("hello")
             }
 
             function initZoom() {
                 d3.select('#map')
                     .call(zoom);
-                //console.log("hi there")
 			}
 
 			d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
@@ -247,7 +244,11 @@
 					.attr("width", (width/bar_count)*.95)
 					.attr("height", d => height - y_scale(d.deaths))
 					.attr("fill", "#aaaaaa")
-					.on("click", function(d) {console.log('the fuck just happened')})
+					.on("click", function(d,i) {
+                        console.log('the fuck just happened')
+                        console.log(d,i)
+                    
+                    })
 
 
                 svg.append("text")
@@ -284,8 +285,6 @@
                 var margin = {top: 50, right: 30, bottom: 50, left: 30},
                     width = 300 - margin.left - margin.right,
                     height = 300 - margin.top - margin.bottom;
-                
-
                 
                 age_data = calc_table(data);
                 
