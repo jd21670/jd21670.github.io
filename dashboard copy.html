@@ -172,7 +172,7 @@
                         }
 
                         death_days.deaths = parseInt(death_days.deaths);
-                        draw_daybar(death_days);
+                        draw_daybar(death_days, death_details);
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
                     });
@@ -207,7 +207,7 @@
             }
 
 
-            function draw_daybar (data) {
+            function draw_daybar (data, detail_data) {
                 var margin = {top: 50, right: 30, bottom: 50, left: 30},
                     width = 600 - margin.left - margin.right,
                     height = 300 - margin.top - margin.bottom;
@@ -261,7 +261,7 @@
 					.attr("fill", "#aaaaaa")
 					.on("click", function(d,m) {
                         clear_graphs()
-                        new_data = filter_table(data,m.date)
+                        new_data = filter_table(detail_data,m.date)
                         draw_agebar(new_data)
 
                     })
