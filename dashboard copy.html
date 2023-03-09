@@ -139,7 +139,7 @@
                 //console.log("hi there")
 			}
 
-			d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
+			ddet, dday = d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
                     d3.csv("data/deaths_age_sex.csv", ({x,y,age,gender}) => ({x: x,
                                                                               y: y,
                                                                               age: +age,
@@ -152,10 +152,7 @@
                         //console.log(death_days);
 
                         while (j < day_len) {
-                            //death_details[i].new = "test";
-                            //console.log(death_details[i].gender);
                             deaths = death_days[j].deaths;
-
 
                             for (k = 0; k < deaths; k++) {
                                 death_details[i].date = death_days[j].date;
@@ -185,13 +182,12 @@
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
                         death_test = death_details;
-                        return death_test;
+                        return death_details, death_days;
                     });
-                    return death_test;
                 });
 
 
-            console.log(death_test);
+            console.log(death_details);
 
 			function draw_deaths(death_details,x_scaler,y_scaler) {
 				var death_points = d3.select('#map g').append('g');
@@ -270,10 +266,7 @@
                     .attr("text-anchor", "middle")  
                     .style("font-size", "16px")
                     .style("font-family", "Arial")
-                    .text("Deaths by Day");
-
-
-               
+                    .text("Deaths by Day");           
             }
 
             function draw_agebar (death_details) {
@@ -402,7 +395,7 @@
                 .enter()
                 .append('td')
                     .text(function (d) { return d.value; });
-            }
+                }
 		</script>
 	</body>
 </html>
