@@ -181,9 +181,6 @@
                     });
                 });
 
-
-            console.log(dday);
-
 			function draw_deaths(data,x_scaler,y_scaler) {
 				var death_points = d3.select('#map g').append('g');
 
@@ -198,18 +195,18 @@
 			}
 
 
-            function draw_daybar (death_days) {
+            function draw_daybar (data) {
                 var margin = {top: 50, right: 30, bottom: 50, left: 30},
                     width = 600 - margin.left - margin.right,
                     height = 300 - margin.top - margin.bottom;
 
-                bar_max = d3.max(death_days, function (d) {return d.deaths;});
-                date_min = d3.min(death_days, function (d) {return d.date;});
-                date_max = d3.max(death_days, function (d) {return d.date;});
+                bar_max = d3.max(data, function (d) {return d.deaths;});
+                date_min = d3.min(data, function (d) {return d.date;});
+                date_max = d3.max(data, function (d) {return d.date;});
                 //date_first = death_days[0].date;
                 //date_last
                 //console.log("max = ", bar_max);
-                bar_count = death_days.length;
+                bar_count = data.length;
                 //console.log("count = ", bar_count);
                 console.log(date_min, date_max);
 
@@ -243,7 +240,7 @@
                     .call(y_axis);
                 
                 svg.selectAll("mybar")
-                    .data(death_days)
+                    .data(data)
                     .join("rect")
 					.attr("x", d => x_scale(d.date))
 					.attr("y", d => y_scale(d.deaths))
