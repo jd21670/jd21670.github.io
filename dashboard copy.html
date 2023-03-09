@@ -325,13 +325,16 @@
                 console.log(age_data)
                 bar_max = 200;
                  
-                bar_max2 = function(age_data) {
+                function get_max(data) {
                     var bmax = 0;
-                    for (i=0;i<age_data.length-1;i++) {
-                        if (age_data[i].Total > bmax) {bmax = age_data[i].Total}
+                    for (i=0;i<data.length-1;i++) {
+                        if (data[i].Total > bmax) {bmax = data[i].Total}
                     }
                     return bmax;
                 }
+
+                bar_max2 = get_max(age_data);
+
                 console.log(bar_max2);
                 var stack = d3.stack().keys([ "Male", "Female"]);
       
