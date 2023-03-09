@@ -181,18 +181,17 @@
                         draw_daybar(death_days);
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
-                        dday = death_days;
                     });
                 });
 
 
             console.log(dday);
 
-			function draw_deaths(death_details,x_scaler,y_scaler) {
+			function draw_deaths(data,x_scaler,y_scaler) {
 				var death_points = d3.select('#map g').append('g');
 
 				death_points.selectAll('circle')
-				.data(death_details)
+				.data(data)
 				.enter()
 				.append('circle')
 				.style('fill','black')
