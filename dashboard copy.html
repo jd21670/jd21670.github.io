@@ -199,7 +199,7 @@
 
             function filter_table(data,date) {
                 date_out = [];
-                for (i=0,i<data.length,i++) {
+                for (i=0;i<data.length;i++) {
                     if (data.date[i] <= date) {date_out += data[i]}
                 }
                 return date_out;
