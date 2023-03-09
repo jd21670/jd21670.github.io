@@ -25,7 +25,7 @@
 
 			var map_size = 600;
             var death_details = [];
-            var dday = [];
+            let dday = [];
             var ddet = [];
 
 			var x_scaler = d3.scaleLinear();
@@ -139,7 +139,7 @@
                 //console.log("hi there")
 			}
 
-			ddet, dday = d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
+			d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
                     d3.csv("data/deaths_age_sex.csv", ({x,y,age,gender}) => ({x: x,
                                                                               y: y,
                                                                               age: +age,
@@ -181,13 +181,12 @@
                         draw_daybar(death_days);
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
-                        death_test = death_details;
-                        return death_details, death_days;
+                        dday = death_days;
                     });
                 });
 
 
-            console.log(ddet);
+            console.log(dday);
 
 			function draw_deaths(death_details,x_scaler,y_scaler) {
 				var death_points = d3.select('#map g').append('g');
