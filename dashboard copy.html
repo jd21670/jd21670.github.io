@@ -323,7 +323,7 @@
                 
                 age_data = calc_table(data);
                 console.log(age_data)
-                bar_max = 200;
+                //bar_max = 200;
                  
                 function get_max(data) {
                     var bmax = 0;
@@ -335,7 +335,7 @@
                     return bmax;
                 }
 
-                bar_max2 = get_max(age_data);
+                bar_max = get_max(age_data*1.1);
 
                 console.log(bar_max2);
                 var stack = d3.stack().keys([ "Male", "Female"]);
