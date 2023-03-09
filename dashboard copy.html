@@ -272,13 +272,13 @@
 					.attr("width", (width/bar_count)*.95)
 					.attr("height", d => height - y_scale(d.deaths))
 					.attr("fill", "#aaaaaa")
-					.on("mouseover", function(d,m) {
+					.on("click", function(d,m) {
                         clear_graphs()
                         new_data = filter_table_oneday(detail_data, m.date)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
                     })
-                    .on("click", function(d,m) {
+                    .on("mouseover", function(d,m) {
                         clear_graphs()
                         new_data = filter_table(detail_data, m.date)
                         draw_agebar(new_data)
