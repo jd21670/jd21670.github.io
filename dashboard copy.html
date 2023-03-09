@@ -331,7 +331,7 @@
                 var colors = d3.scaleOrdinal();
                 colors.domain(["Male","Female"])
                     .range(["blue","pink"]);
-
+                
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([height,0]);
 
@@ -371,7 +371,11 @@
                         .attr("y", function(d) { return y_scale(d[1]); })
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
                         .attr("width",(width/bar_count)*.95)
-
+                
+                svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#69b3a2")
+                svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
+                svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
+                svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")
                 console.log(stackedSeries);
                 draw_table(age_data);
             }
