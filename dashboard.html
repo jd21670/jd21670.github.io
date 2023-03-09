@@ -193,7 +193,7 @@
                 });
 
 			function draw_deaths(death_details) {
-				var death_points = d3.select("#map g");
+				var death_points = d3.select('#map g').append('g');
 
 				death_points.append('circle')
 				.data(death_details)
