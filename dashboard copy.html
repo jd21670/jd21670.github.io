@@ -24,9 +24,6 @@
 		<script>
 
 			var map_size = 600;
-            var death_details = [];
-            let dday = [];
-            var ddet = [];
 
 			var x_scaler = d3.scaleLinear();
 			var y_scaler = d3.scaleLinear();
@@ -198,8 +195,6 @@
 				.attr('r', '3px')
 				.attr('cx', function(d) {return x_scaler(d.x)})
 				.attr('cy', function(d) {return y_scaler(d.y)})
-
-
 			}
 
 
