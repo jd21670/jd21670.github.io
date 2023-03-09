@@ -200,8 +200,8 @@
             function filter_table(data,date) {
                 date_out = [];
                 for (i=0;i<data.length;i++) {
-                    //console.log(data[i])
-                    if (data[i].date <= date) {date_out += data[i]}
+                    console.log(data[i])
+                    //if (data[i].date <= date) {date_out += data[i]}
                 }
                 return date_out;
             }
@@ -220,7 +220,7 @@
                 //console.log("max = ", bar_max);
                 bar_count = data.length;
                 //console.log("count = ", bar_count);
-                console.log(detail_data);
+                //console.log(detail_data);
 
 
                 // append the svg object to the body of the page
@@ -261,7 +261,7 @@
 					.attr("fill", "#aaaaaa")
 					.on("click", function(d,m) {
                         clear_graphs()
-                        //new_data = filter_table(detail_data,m.date)
+                        new_data = filter_table(detail_data, m.date)
                         draw_agebar(new_data)
 
                     })
