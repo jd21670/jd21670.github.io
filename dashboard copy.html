@@ -325,7 +325,7 @@
                 
                 //bar_max = 200;
                  
-                bar_max =  d3.max(data, function (d) {return d.male + d.female;})
+                bar_max =  d3.max(age_data, function (d) {return d.male + d.female;})
 
                 var stack = d3.stack().keys([ "Male", "Female"]);
       
