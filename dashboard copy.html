@@ -220,7 +220,7 @@
                 //console.log("max = ", bar_max);
                 bar_count = data.length;
                 //console.log("count = ", bar_count);
-                console.log(date_min, date_max);
+                console.log(detail_data);
 
 
                 // append the svg object to the body of the page
@@ -261,7 +261,7 @@
 					.attr("fill", "#aaaaaa")
 					.on("click", function(d,m) {
                         clear_graphs()
-                        new_data = filter_table(detail_data,m.date)
+                        //new_data = filter_table(detail_data,m.date)
                         draw_agebar(new_data)
 
                     })
