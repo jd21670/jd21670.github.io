@@ -200,7 +200,7 @@
             function filter_table(data,date) {
                 data_out = [];
                 for (i=0; i<data.length; i++) {
-                    if (data[i].date <= date) {console.log(data[i])}
+                    if (data[i].date <= date) {data_out.push(data[i])}
                 }
                 console.log(data_out)
                 return data_out;
