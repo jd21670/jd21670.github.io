@@ -372,10 +372,10 @@
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
                         .attr("width",(width/bar_count)*.95)
                 
-                svg.append("rect").attr("x",40).attr("y",238).attr("height", 15).attr("width",15).style("fill", "blue")
-                svg.append("rect").attr("x",165).attr("y",238).attr("height", 15).attr("width",15).style("fill", "pink")
-                svg.append("text").attr("x", 55).attr("y", 222).text("Male").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
-                svg.append("text").attr("x", 180).attr("y", 222).text("Female").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
+                svg.append("rect").attr("x",40).attr("y",222).attr("height", 15).attr("width",15).style("fill", "blue")
+                svg.append("rect").attr("x",165).attr("y",222).attr("height", 15).attr("width",15).style("fill", "pink")
+                svg.append("text").attr("x", 55).attr("y", 238).text("Male").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
+                svg.append("text").attr("x", 180).attr("y", 238).text("Female").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
                 
                 console.log(stackedSeries);
                 draw_table(age_data);
