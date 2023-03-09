@@ -25,16 +25,22 @@
 
 			var map_size = 600;
 
+			var x_scaler = d3.scaleLinear();
+			var y_scaler = d3.scaleLinear();
+
+			x_scaler.domain([3,20]).range([0, map_size]);
+			y_scaler.domain([20,3]).range([0, map_size]);
+
 			d3.json("data/streets.json").then(function(street_data) {
 
                 const street_map = d3.select("#map g");
-
+/*
 				var x_scaler = d3.scaleLinear();
 				var y_scaler = d3.scaleLinear();
 
 				x_scaler.domain([3,20]).range([0, map_size]);
 				y_scaler.domain([20,3]).range([0, map_size]);
-
+*/
 				var line = d3.line()
                     .x(d => x_scaler(d.x))
                     .y(d => y_scaler(d.y));
