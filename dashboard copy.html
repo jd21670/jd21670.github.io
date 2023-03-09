@@ -43,22 +43,6 @@
             var date_from = new Date("1854-08-19");
             var date_to = new Date("1854-09-29")
 
-            document.getElementById("date_from").addEventListener("change", function() {
-                var input = this.value;
-                var date_from = new Date(input);
-                //console.log(input); //e.g. 2015-11-13
-                console.log(date_from); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
-                draw_daybar(death_days, death_details);
-            });
-
-            document.getElementById("date_to").addEventListener("change", function() {
-                var input = this.value;
-                var date_to = new Date(input);
-                //console.log(input); //e.g. 2015-11-13
-                console.log(date_to); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
-                draw_daybar(death_days, death_details);
-            });
-
 			x_scaler.domain([3,20]).range([0, map_size]);
 			y_scaler.domain([20,3]).range([0, map_size]);
 
@@ -206,6 +190,22 @@
                         draw_daybar(death_days, death_details);
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
+
+                        document.getElementById("date_from").addEventListener("change", function() {
+                            var input = this.value;
+                            var date_from = new Date(input);
+                            //console.log(input); //e.g. 2015-11-13
+                            console.log(date_from); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+                            draw_daybar(death_days, death_details);
+                        });
+
+                        document.getElementById("date_to").addEventListener("change", function() {
+                            var input = this.value;
+                            var date_to = new Date(input);
+                            //console.log(input); //e.g. 2015-11-13
+                            console.log(date_to); //e.g. Fri Nov 13 2015 00:00:00 GMT+0000 (GMT Standard Time)
+                            draw_daybar(death_days, death_details);
+                        });
                     });
                 });
 
