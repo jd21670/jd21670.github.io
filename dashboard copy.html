@@ -329,7 +329,8 @@
                     var bmax = 0;
                     for (i=0;i<data.length-1;i++) {
                         console.log(data[i]);
-                        if (data[i].Total > bmax) {bmax = data[i].Total;}
+                        test = data[i].Male + data[i].Female;
+                        if (test > bmax) {bmax = test;}
                     }
                     return bmax;
                 }
