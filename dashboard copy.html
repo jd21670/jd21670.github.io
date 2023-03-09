@@ -195,7 +195,14 @@
                 d3.selectAll("circle").remove();
                 d3.selectAll("#grpbar").remove();
                 d3.selectAll("#tabletext").remove();
+            }
 
+            function filter_table(data,date) {
+                date_out = [];
+                for (i=0,i<data.length,i++) {
+                    if (data.date[i] <= date) {date_out += data[i]}
+                }
+                return date_out;
             }
 
 
@@ -251,12 +258,11 @@
 					.attr("width", (width/bar_count)*.95)
 					.attr("height", d => height - y_scale(d.deaths))
 					.attr("fill", "#aaaaaa")
-					.on("click", function(d,i) {
-                        console.log('the fuck just happened')
-                        console.log(i.date)
+					.on("click", function(d,m) {
                         clear_graphs()
+                        new_data = filter_table(data,m.date)
+                        draw_agebar(new_data)
 
-                    
                     })
 
 
