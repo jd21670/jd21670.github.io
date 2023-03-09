@@ -313,7 +313,11 @@
                         var date_from = new Date("1854-08-19");
                         var date_to = new Date("1854-09-29")
 
+                        document.getElementById("date_from") = "1854-08-19";
+                        document.getElementById("date_to") = "1854-09-29";
+
                         clear_graphs()
+
                         new_data = filter_base(detail_data,date_from,date_to);
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
