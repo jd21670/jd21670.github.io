@@ -198,13 +198,12 @@
             }
 
             function filter_table(data,date) {
-                date_out = [];
+                data_out = [];
                 for (i=0;i<data.length;i++) {
-                    //console.log(data[i])
-                    if (data[i].date <= date) {console.log('true')}
+                    if (data[i].date <= date) {data_out += data[i]}
                 }
-                //console.log(date_out)
-                return date_out;
+                console.log(data_out)
+                return data_out;
             }
 
 
