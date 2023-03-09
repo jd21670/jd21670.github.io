@@ -317,15 +317,15 @@
             }
 
             function draw_agebar (data) {
-                var margin = {top: 0, right: 30, bottom: 15, left: 30},
+                var margin = {top: 0, right: 30, bottom: 50, left: 30},
                     width = 300 - margin.left - margin.right,
                     height = 300 - margin.top - margin.bottom;
                 
                 age_data = calc_table(data);
-                
-                //bar_max = 200;
+                console.log(age_data)
+                bar_max = 200;
                  
-                bar_max =  d3.max(age_data, function (d) {return d.male + d.female;})
+                //bar_max =  d3.max(age_data, function (d) {return d.male + d.female;})
 
                 var stack = d3.stack().keys([ "Male", "Female"]);
       
