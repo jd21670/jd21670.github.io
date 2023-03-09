@@ -205,6 +205,14 @@
                 console.log(data_out)
                 return data_out;
             }
+            function filter_table_oneday(data,date) {
+                data_out = [];
+                for (i=0; i<data.length; i++) {
+                    if (data[i].date == date) {data_out.push(data[i])}
+                }
+                console.log(data_out)
+                return data_out;
+            }
 
 
             function draw_daybar (data, detail_data) {
@@ -260,6 +268,12 @@
 					.attr("height", d => height - y_scale(d.deaths))
 					.attr("fill", "#aaaaaa")
 					.on("mouseover", function(d,m) {
+                        clear_graphs()
+                        new_data = filter_table_oneday(detail_data, m.date)
+                        draw_agebar(new_data)
+                        draw_deaths(new_data,x_scaler,y_scaler)
+                    })
+                    .on("click", function(d,m) {
                         clear_graphs()
                         new_data = filter_table(detail_data, m.date)
                         draw_agebar(new_data)
