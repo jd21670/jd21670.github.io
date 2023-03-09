@@ -14,8 +14,13 @@
                     <g></g>
                 </svg>
 			</div>
-            <div class="g s2"><svg id = "agebar" width="300" height="300"></svg></div>
-            <div class="g s3" id = "table"><h1>Deaths by Age & Sex</h1></div>
+            <div class="g s2">
+                <h1>Age Group & Sex Stacked Bar</h1>
+                <svg id = "agebar" width="300" height="300"></svg>
+            </div>
+            <div class="g s3" id = "table">
+                <h1>Age Group & Sex Table</Table></h1>
+            </div>
             <div class="g s4"><svg id = "daybar" width="600" height="300"></svg></div>
        </div>
 		
@@ -376,8 +381,6 @@
                 svg.append("rect").attr("x",165).attr("y",222).attr("height", 15).attr("width",15).style("fill", "pink")
                 svg.append("text").attr("x", 58).attr("y", 234).text("Male").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
                 svg.append("text").attr("x", 183).attr("y", 234).text("Female").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
-                
-                svg.append("text").attr("x", 0).attr("y", -10).text("Age Group & Sex Stacked Bar").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
 
                 console.log(stackedSeries);
                 draw_table(age_data);
