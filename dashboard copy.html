@@ -180,7 +180,7 @@
                     .append('circle')
                     .style('fill', function(d) {return d})
                     .attr('r', '3px')
-                    .attr('cx', function(d) {return leg_scale(d.x)})
+                    .attr('cx', function(d) {return leg_scale(d)})
                     .attr('cy', 10)
 
 
@@ -262,13 +262,13 @@
 				var death_points = d3.select('#map g').append('g');
 
 				death_points.selectAll('circle')
-				.data(data)
-				.enter()
-				.append('circle')
-				.style('fill', function(d) {return color_scaler(d.colorkey)})
-				.attr('r', '3px')
-				.attr('cx', function(d) {return x_scaler(d.x)})
-				.attr('cy', function(d) {return y_scaler(d.y)})
+                    .data(data)
+                    .enter()
+                    .append('circle')
+                    .style('fill', function(d) {return color_scaler(d.colorkey)})
+                    .attr('r', '3px')
+                    .attr('cx', function(d) {return x_scaler(d.x)})
+                    .attr('cy', function(d) {return y_scaler(d.y)})
 			}
 
             function clear_graphs() {
