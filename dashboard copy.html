@@ -181,7 +181,7 @@
 
 
                 var leg_scale = d3.scaleLinear();
-                leg_scale.domain([1,12])
+                leg_scale.domain([1,8])
                          .range([10,550]);
 
                 var leg_circles = d3.select('#legend g').append('g');
@@ -194,6 +194,20 @@
                     .attr('r', '5px')
                     .attr('cx', function(d) {return leg_scale(d.pos)})
                     .attr('cy', function(d) {return d.y})
+
+                var leg_titles = d3.select('#legend g').append('g');
+
+                leg_circles.selectAll('leg_text')
+                    .data(labels)
+                    .enter()
+                    .append('leg_text')
+                    .attr("id","street_names")
+                    .attr("font-family","arial")
+                    .attr("font-size","14px")
+                    .attr("x", function(d) { return leg_scale(d.pos)+10; })
+                    .attr("y", function(d) { return d.y; })
+                    .text(function(d) { return d.label; });
+
 
 
             }
