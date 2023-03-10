@@ -379,7 +379,7 @@
 					.attr("y", d => y_scale(d.deaths))
 					.attr("width", (width/bar_count)*.95)
 					.attr("height", d => height - y_scale(d.deaths))
-					.attr("fill", "#aaaaaa")
+					.attr("fill", "#8200BC")
 					.on("click", function(d,m) {
                         clear_graphs()
                         new_data = filter_table_oneday(detail_data, m.date, date_from, date_to)
@@ -472,7 +472,7 @@
 
                 var colors = d3.scaleOrdinal();
                 colors.domain(["Male","Female"])
-                    .range(["blue","pink"]);
+                    .range(["#0052FF","#DA0000"]);
                 
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([height,0]);
