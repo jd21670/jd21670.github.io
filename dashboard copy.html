@@ -400,7 +400,7 @@
                         new_data = filter_table_oneday(detail_data, m.date, date_from, date_to)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
-                        recolor(data, date_from, date_to)
+                        recolor(data, date_from, Math.min(m.date,date_to))
                     })
                     .on("mouseover", function(d,m) {
                         clear_graphs()
@@ -408,7 +408,7 @@
                         new_data = filter_table(detail_data, m.date, date_from, date_to)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
-                        recolor(data, date_from, date_to)
+                        recolor(data, date_from, Math.min(m.date,date_to))
                     })
 
                     date_apply.addEventListener("click", function() {
