@@ -236,7 +236,8 @@
 
                         while (j < day_len) {
                             deaths = death_days[j].deaths;
-                            death_days[j].on_off = 1;
+                            //death_days[j].on_off = 1;
+                            death_days[j].push({ on_off: 1});
                             for (k = 0; k < deaths; k++) {
                                 death_details[i].date = death_days[j].date;
                                 death_details[i].daynum = j;
