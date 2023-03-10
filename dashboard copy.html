@@ -360,7 +360,7 @@
                     })
                     .on("mouseover", function(d,m) {
                         clear_graphs()
-                        console.log(date_to)
+                        //console.log(date_to)
                         new_data = filter_table(detail_data, m.date, date_from, date_to)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
