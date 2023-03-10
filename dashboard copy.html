@@ -335,6 +335,21 @@
                 return data_out;
             }
 
+            function recolor(data, date_from, date_to) {
+                for (i=0; i<data.length;i++) {
+                    if (data.date >= date_from && data.date <= date_to) {data.on_off = 1;}
+                    else {data.on_off = 0;}
+                }
+
+                var on_off = d3.scaleOrdinal();
+                on_off.domain([0,1]).range('#aaaaaa','#8200BC');
+
+                d3.selectAll('mybar')
+                    .data(data)
+                    .attr('fill', function(d) {on_off(d.on_off)});
+
+            }
+
 
             function draw_daybar(data, detail_data, date_from,date_to) {
                 var margin = {top: 50, right: 30, bottom: 50, left: 30},
@@ -370,9 +385,6 @@
                         .attr("transform", "translate(-10,7)rotate(-70)")
                         .style("text-anchor", "end");
 
-                var on_off = d3.scaleOrdinal();
-                on_off.domain([0,1]).range('#aaaaaa','#8200BC');
-
                 svg.append("g")
                     .call(y_axis);
                 
@@ -389,6 +401,7 @@
                         new_data = filter_table_oneday(detail_data, m.date, date_from, date_to)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
+                        recolor(data, date_from, date_to)
                     })
                     .on("mouseover", function(d,m) {
                         clear_graphs()
@@ -396,6 +409,7 @@
                         new_data = filter_table(detail_data, m.date, date_from, date_to)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
+                        recolor(data, date_from, date_to)
                     })
 
                     date_apply.addEventListener("click", function() {
