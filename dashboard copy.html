@@ -206,6 +206,14 @@
                     .attr("y", function(d) { return d.y+5; })
                     .text(function(d) { return d.label; });
 
+                var pump_box = d3.select('#legend g').append('g');
+                
+                pump_box.selectAll('rect')
+                    .append('rect')
+                    .attr('height','5px')
+                    .attr('width','5px')
+
+
 
 
             }
@@ -342,11 +350,12 @@
                     //console.log(data[i].on_off)
                 }
                 //console.log(date_from, date_to)
-                //console.log(data)
+                console.log(data)
+
                 var on_off = d3.scaleOrdinal();
                 on_off.domain([0,1]).range('#aaaaaa','#8200BC');
 
-                d3.select("#daybar").selectAll('mybar')
+                d3.select("#daybar").selectAll('rect')
                     .data(data)
                     .attr('fill', function(d) {on_off(d.on_off)});
 
