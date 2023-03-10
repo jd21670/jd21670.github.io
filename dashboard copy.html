@@ -355,11 +355,12 @@
                 console.log(data)
 
                 var on_off = d3.scaleOrdinal();
-                on_off.domain([0,1]).range('#aaaaaa','#8200BC');
+                on_off.domain([0,1])
+                      .range('#aaaaaa','#8200BC');
 
                 d3.select("#daybar").selectAll('rect')
                     .data(data)
-                    .attr('fill', function(d) {on_off(d.on_off)});
+                    .attr('fill', function(d) {return on_off(d.on_off)});
 
             }
 
