@@ -208,13 +208,14 @@
 
                 var pump_box = d3.select('#legend g').append('g');
                 
-                pump_box.selectAll('rect')
-                    .append('g')
+                leg_titles.append("rect")
                     .attr('height','5px')
                     .attr('width','5px')
                     .attr('x', 300)
                     .attr('y',80)
-					.attr('fill','#FFFFFF')
+					.attr('fill','#FFFFFF');
+				
+				leg_titles.append("text").attr("x", 300).attr("y", 80).text("Water Pumps").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
 
 
 
@@ -549,8 +550,8 @@
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
                         .attr("width",(width/bar_count)*.95)
                 
-                svg.append("rect").attr("x",40).attr("y",228).attr("height", 15).attr("width",15).style("fill", "blue")
-                svg.append("rect").attr("x",165).attr("y",228).attr("height", 15).attr("width",15).style("fill", "pink")
+                svg.append("rect").attr("x",40).attr("y",228).attr("height", 15).attr("width",15).style("fill", "#0052FF")
+                svg.append("rect").attr("x",165).attr("y",228).attr("height", 15).attr("width",15).style("fill", "#DA0000")
                 svg.append("text").attr("x", 58).attr("y", 240).text("Male").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
                 svg.append("text").attr("x", 183).attr("y", 240).text("Female").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
 
