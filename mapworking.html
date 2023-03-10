@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title>Cholera Outbreak of 1854</title>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class = "header">Cholera Outbreak of 1854</div>
+        <div class="grid">
+            <div class="g s1">
+				<svg id = "map" width="600" height="600">
+                    <g></g>
+                </svg>
+			</div>
+            <div class="g s2"></div>
+            <div class="g s3"></div>
+            <div class="g s4"></div>
+       </div>
+		
+		
+
+		<script>
+
+			var map_size = 600;
+
+			d3.json("data/streets.json").then(function(street_data) {
+
+                const street_map = d3.select("#map g");
+
+				var x_scaler = d3.scaleLinear();
+				var y_scaler = d3.scaleLinear();
+
+				x_scaler.domain([3,20]).range([0, map_size]);
+				y_scaler.domain([20,3]).range([0, map_size]);
+
+				var line = d3.line()
+                    .x(d => x_scaler(d.x))
+                    .y(d => y_scaler(d.y));
+
+				const line_group = street_map.selectAll("g")
+                    .data(street_data)
+                    .enter()
+                    .append("g");
+
+                line_group.append("path")
+                    .attr("d", d => line(d))
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 2)
+                    .attr("fill", "none");
+
+
+				drawpumps(x_scaler,y_scaler);
+                initZoom();
+
+      		});
+
+			function drawpumps(x_scaler,y_scaler) {
+				d3.csv("data/pumps.csv").then(function(pumps) {
+
+					var dots = d3.select('#map g').append('g');
+
+					dots.selectAll('circle')
+						.data(pumps)
+						.enter().append('circle')
+						.style('fill', 'black')
+						.attr('r', '5px')
+						.attr('cx', function(d) { return x_scaler(d.x); })
+						.attr('cy', function(d) { return y_scaler(d.y); });
+				})
+			};
+
+			let zoom = d3.zoom()
+                .on('zoom', handleZoom);
+
+            function handleZoom(e) {
+                d3.select('#map g')
+                    .attr('transform', e.transform);
+                
+                console.log("hello")
+            }
+
+            function initZoom() {
+                d3.select('#map')
+                    .call(zoom);
+                console.log("hi there")
+}
+		</script>
+	</body>
+</html>
