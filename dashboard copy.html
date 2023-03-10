@@ -182,7 +182,7 @@
 
                 var leg_scale = d3.scaleLinear();
                 leg_scale.domain([1,12])
-                         .range([0,300]);
+                         .range([10,550]);
 
                 var leg_circles = d3.select('#legend g').append('g');
 
@@ -191,7 +191,7 @@
                     .enter()
                     .append('circle')
                     .style('fill', function(d) {return d.color})
-                    .attr('r', '3px')
+                    .attr('r', '5px')
                     .attr('cx', function(d) {return leg_scale(d.pos)})
                     .attr('cy', 10)
 
