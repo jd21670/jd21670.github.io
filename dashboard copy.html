@@ -370,6 +370,8 @@
                         date_from = new Date(document.getElementById("date_from").value);
                         date_to = new Date(document.getElementById("date_to").value);
 
+                        date_to.setDate(date_to.getDate() -1);
+
                         clear_graphs()
                         new_data = filter_base(detail_data,date_from,date_to);
                         draw_agebar(new_data)
