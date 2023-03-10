@@ -169,8 +169,8 @@
                 var labels = ["M: <10","M: 11-20","M: 21-40","M: 41-60","M: 61-80","M: >80","F: <10","F: 11-20","F: 21-40","F: 41-60","F: 61-80","F: >80"];
 
                 var leg_scale = d3.scaleLinear();
-                leg_scale.domain([0:12])
-                         .range([0:map_size]);
+                leg_scale.domain([0,12])
+                         .range([0,map_size]);
 
                 var leg_circles = d3.select('#legend').append('g');
 
