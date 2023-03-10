@@ -334,6 +334,7 @@
             }
 
             function recolor(data, date_from, date_to) {
+                console.log(data)
                 for (i=0; i<data.length;i++) {
                     if (data.date >= date_from && data.date <= date_to) {data[i].on_off = 1;}
                     else {data[i].on_off = 0;}
@@ -408,7 +409,7 @@
                         new_data = filter_table(detail_data, m.date, date_from, date_to)
                         draw_agebar(new_data)
                         draw_deaths(new_data,x_scaler,y_scaler)
-                        recolor(data, date_from, Math.min(m.date,date_to))
+                        recolor(data, date_from, Date(Math.min(m.date,date_to)))
                     })
 
                     date_apply.addEventListener("click", function() {
