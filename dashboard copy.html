@@ -51,8 +51,8 @@
 			var x_scaler = d3.scaleLinear();
 			var y_scaler = d3.scaleLinear();
 
-            var date_from = new Date("1854-08-19");
-            var date_to = new Date("1854-09-29")
+            var date_from = new Date("1854-08-19").valueAsDate;
+            var date_to = new Date("1854-09-29").valueAsDate;
 
 			x_scaler.domain([3,20]).range([0, map_size]);
 			y_scaler.domain([20,3]).range([0, map_size]);
@@ -279,9 +279,9 @@
 
             function filter_base(data,date_from,date_to) {
                 data_out = [];
-                temp = Date(date_to.setDate(date_to.getDate() + 1));
+                //temp = Date(date_to.setDate(date_to.getDate() + 1));
                 for (i=0; i<data.length; i++) {
-                    if (data[i].date >= date_from && data[i].date <= temp) {data_out.push(data[i])}
+                    if (data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
                 }
                 console.log(data_out);
                 return data_out;
@@ -290,18 +290,18 @@
             
             function filter_table(data,date,date_from,date_to) {
                 data_out = [];
-                temp = Date(date_to.setDate(date_to.getDate() + 1));
+                //temp = Date(date_to.setDate(date_to.getDate() + 1));
                 for (i=0; i<data.length; i++) {
-                    if (data[i].date <= date && data[i].date >= date_from && data[i].date <= temp) {data_out.push(data[i])}
+                    if (data[i].date <= date && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
                 }
                 //console.log(date_from,date_to);
                 return data_out;
             }
             function filter_table_oneday(data,date,date_from,date_to) {
                 data_out = [];     
-                temp = Date(date_to.setDate(date_to.getDate() + 1));
+                //temp = Date(date_to.setDate(date_to.getDate() + 1));
                 for (i=0; i<data.length; i++) {
-                    if (data[i].date == date  && data[i].date >= date_from && data[i].date <= temp) {data_out.push(data[i])}
+                    if (data[i].date == date  && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
                 }
                 return data_out;
             }
@@ -367,8 +367,8 @@
                     })
 
                     date_apply.addEventListener("click", function() {
-                        date_from = new Date(document.getElementById("date_from").value);
-                        date_to = new Date(document.getElementById("date_to").value);
+                        date_from = new Date(document.getElementById("date_from").valueAsDate);
+                        date_to = new Date(document.getElementById("date_to").valueAsDate);
 
                         clear_graphs()
                         new_data = filter_base(detail_data,date_from,date_to);
