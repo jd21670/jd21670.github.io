@@ -165,11 +165,22 @@
             }
             
             function draw_legend() {
-                var colors = ["#00CCFF","#00A3FF","#007AFF","#0052FF","#0000FF","#0700C4","#FFABAB","#FF7979","#FA0000","#DA0000","#AC0000","#8E0000"];
-                var labels = ["M: <10","M: 11-20","M: 21-40","M: 41-60","M: 61-80","M: >80","F: <10","F: 11-20","F: 21-40","F: 41-60","F: 61-80","F: >80"];
+                var labels = [{pos: 1, color: "#00CCFF", label: "M: <10"},
+                              {pos: 2, color: "#00A3FF", label: "M: 11-20"},
+                              {pos: 3, color: "#007AFF", label: "M: 21-40"},
+                              {pos: 4, color: "#0052FF", label: "M: 41-60"},
+                              {pos: 5, color: "#0000FF", label: "M: 61-80"},
+                              {pos: 6, color: "#0700C4", label: "M: >80"},
+                              {pos: 7, color: "#FFABAB", label: "F: <10"},
+                              {pos: 8, color: "#FF7979", label: "F: 11-20"},
+                              {pos: 9, color: "#FA0000", label: "F: 21-40"},
+                              {pos: 10, color: "#DA0000", label: "F: 41-60"},
+                              {pos: 11, color: "#AC0000", label: "F: 61-80"},
+                              {pos: 12, color: "#8E0000", label: "F: >80"}];
+
 
                 var leg_scale = d3.scaleLinear();
-                leg_scale.domain(colors)
+                leg_scale.domain([1,12])
                          .range([0,300]);
 
                 var leg_circles = d3.select('#legend g').append('g');
@@ -178,9 +189,9 @@
 				    .data(colors)
                     .enter()
                     .append('circle')
-                    .style('fill', function(d) {return d})
+                    .style('fill', function(d) {return d.color})
                     .attr('r', '3px')
-                    .attr('cx', function(d) {return leg_scale(d)})
+                    .attr('cx', function(d) {return leg_scale(d.pos)})
                     .attr('cy', 10)
 
 
