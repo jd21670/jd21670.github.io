@@ -359,6 +359,8 @@
                 date_max = d3.max(data, function (d) {return d.date;});
                 bar_count = data.length;
 
+                console.log(data)
+
                 var svg = d3.select("#daybar")
                     .append("svg")
                     .attr("width", width + margin.left + margin.right)
