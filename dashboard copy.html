@@ -182,8 +182,9 @@
                                 else if (death_details[i].age == 4) {death_details[i].agegroup = "61-80"}
                                 else if (death_details[i].age == 5) {death_details[i].agegroup = ">80"}
 
+                                //create sex+age key for ordinal color scale
                                 death_details[i].colorkey = death_details[i].gender*10+death_details[i].age;
-                                console.log(death_details[i].colorkey)
+                                //console.log(death_details[i].colorkey)
 
 
 
@@ -204,13 +205,20 @@
 
 
 			function draw_deaths(data,x_scaler,y_scaler) {
+                var color_key = [0,1,2,3,4,5,10,11,12,13,14,15]
+                var colors = ["#00CCFF","#00A3FF","#007AFF","#0052FF","#0000FF","#0700C4","#FFABAB","#FF7979","#FA0000","#DA0000","#AC0000","#8E0000"]
+
+                var color_scaler = d3.scaleOrdinal();
+                color_scaler.domain(color_key).range(colors);
+
+
 				var death_points = d3.select('#map g').append('g');
 
 				death_points.selectAll('circle')
 				.data(data)
 				.enter()
 				.append('circle')
-				.style('fill','black')
+				.style('fill', function(d) {return color_scaler(d.colorkey)})
 				.attr('r', '3px')
 				.attr('cx', function(d) {return x_scaler(d.x)})
 				.attr('cy', function(d) {return y_scaler(d.y)})
