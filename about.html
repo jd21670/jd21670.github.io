@@ -10,6 +10,8 @@
 <li>To show the distribution of deaths by age group and sex, I chose to include both a stacked bar chart, for a visual representation; and a table, to show the audience the detailed information as well as the totals.</li>
 </ul>
 <p>Since I did a good job planning it out, my initial design is very similar to my final product.&nbsp; I have quite a bit of experience developing dashboards using other tools like PowerBI, SAS, and Google Chart APIs, so developing a layout was straightforward.&nbsp; The only unknown was the capabilities of d3 (and my ability to master it).&nbsp; The date time selection as well as several buttons to reset, and set date ranges were added to the initial design.</p>
+<p><img src="Picture3.jpg"></p>
+
 <p><strong>Design Choices:</strong></p>
 <p><span style="text-decoration: underline;">Overall Arrangement</span>:&nbsp; I chose a simple grid layout to keep everything organized, and I wanted to keep the overall dimensions of the report to a small enough size to fit most screens.&nbsp; Since much of the detailed analysis happens with the map, I chose to make it the largest of the graphs.&nbsp; I chose the map to be the feature of the dashboard as this project relies on the map itself develop by Snow.&nbsp; Since the death by day timeline is featured as the interactive controller for the other visualizations, I put it on the bottom right as this is a good location for right-handed people (as well as anyone using a mouse with their right hand).&nbsp; It is an intuitive layout.</p>
 <p><span style="text-decoration: underline;">Map Chart</span>: The streets, work house, and brewery were drawn in grey because I wanted to draw attention to the points that are placed on the map that represent deaths.&nbsp; These points are presented in color according to the age and sex of the individual.&nbsp; To codify male vs female, I used blue and red respectively.&nbsp; I chose these colors because, at least in the United States, they are colors associated with each gender.&nbsp; To represent age, I used a chromatic scale with lighter shades of the respective color representing younger victims, and darker shades representing older victims.</p>
@@ -25,7 +27,9 @@
 <p><span style="text-decoration: underline;">Discovery</span>:</p>
 <p>Snow&rsquo;s map was excellent at tying Cholera cases to the infected water system.&nbsp; What highlights these findings even more is if we click into the individual days and cases.&nbsp; For instance, if you look at August 31st (see below), we can see as the outbreak starts to pick up steam, the cases are very tightly located around the water pump near the work house and brewery.</p>
 <p>&nbsp;&nbsp;</p>
+<p><img src="Picture1.png"></p>
 <p>Another interesting view is looking at the total deaths by age and sex.&nbsp; From the totals, its clear that the preponderance of deaths were in the elderly and in young children.&nbsp; It is interesting to see the difference in death rates between sexes, however, between the ages of 11 and 60.&nbsp; Between 11 and 40, men seem to be more prone to succumbing to Cholera, but between 41-60, women are.&nbsp; The number seems to be statistically significant.&nbsp; There must be some underlying health or population factors that lead to this imbalance.</p>
+<p><img src="Picture2.png"></p>
 <p><strong>References:</strong></p>
 <p><span style="text-decoration: underline;">Datasets &amp; Requirements</span>:</p>
 <p><a href="https://khreda.com/teaching/spring23/H517/project1/" target="_blank" rel="noopener">https://khreda.com/teaching/spring23/H517/project1/</a></p>
@@ -33,3 +37,4 @@
 <p>The D3 Graph Gallery (2018).<a href="https://d3-graph-gallery.com/" target="_blank" rel="noopener">https://d3-graph-gallery.com</a>. Retrieved: 03/01/2023.</p>
 <p>Bostock, Mike. Data Driven Documents (2023).<a href="https://d3js.org/" target="_blank" rel="noopener">https://d3js.org/</a>. Retrieved: 03/01/2023.</p>
 <p>Mozilla. Basic Concepts of Grid Layout (2023).<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout</a>. Retrieved: 03/01/2023</p>
+<p>Google Doc to HTML Converter (2023). <a href="https://www.gdoctohtml.com/">https://www.gdoctohtml.com/</a>. Retrieved: 03/10/2023.</p>
