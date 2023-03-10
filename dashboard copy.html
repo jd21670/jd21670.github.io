@@ -247,6 +247,7 @@
                         while (j < day_len) {
                             deaths = death_days[j].deaths;
                             death_days[j].on_off = 1;
+                            death_days[j].id = j;
                             console.log(death_days[j])
                             for (k = 0; k < deaths; k++) {
                                 death_details[i].date = death_days[j].date;
@@ -407,6 +408,7 @@
                 svg.selectAll("mybar")
                     .data(data)
                     .join("rect")
+                    .attr("id", "bar"+d.id)
 					.attr("x", d => x_scale(d.date))
 					.attr("y", d => y_scale(d.deaths))
 					.attr("width", (width/bar_count)*.95)
