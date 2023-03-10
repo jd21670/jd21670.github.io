@@ -292,13 +292,15 @@
                     .enter()
                     .append('circle')
                     .style('fill', function(d) {return color_scaler(d.colorkey)})
+                    .attr('id','deaths')
                     .attr('r', '3px')
                     .attr('cx', function(d) {return x_scaler(d.x)})
                     .attr('cy', function(d) {return y_scaler(d.y)})
 			}
 
             function clear_graphs() {
-                d3.selectAll("circle").remove();
+                //d3.selectAll("circle").remove();
+                d3.selectAll("#deaths").remove();
                 d3.selectAll("#grpbar").remove();
                 d3.selectAll("table").remove();
             }
