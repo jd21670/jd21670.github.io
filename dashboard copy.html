@@ -338,11 +338,11 @@
                     if (data.date >= date_from && data.date <= date_to) {data.on_off = 1;}
                     else {data.on_off = 0;}
                 }
-
+                console.log(data)
                 var on_off = d3.scaleOrdinal();
                 on_off.domain([0,1]).range('#aaaaaa','#8200BC');
 
-                d3.selectAll('mybar')
+                d3.select("#daybar").selectAll('mybar')
                     .data(data)
                     .attr('fill', function(d) {on_off(d.on_off)});
 
