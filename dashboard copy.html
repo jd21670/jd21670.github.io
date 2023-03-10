@@ -267,6 +267,7 @@
                         }
 
                         death_days.deaths = parseInt(death_days.deaths);
+                        death_days.on_off = 1;
                         draw_daybar(death_days, death_details,date_from, date_to);
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
@@ -368,6 +369,9 @@
                     .selectAll("text")
                         .attr("transform", "translate(-10,7)rotate(-70)")
                         .style("text-anchor", "end");
+
+                var on_off = d3.scaleOrdinal();
+                on_off.domain([0,1]).range('#aaaaaa','#8200BC');
 
                 svg.append("g")
                     .call(y_axis);
