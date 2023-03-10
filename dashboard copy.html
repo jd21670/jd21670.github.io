@@ -270,7 +270,7 @@
                 for (i=0; i<data.length; i++) {
                     if (data[i].date <= date && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
                 }
-                console.log(date_out,date_to);
+                console.log(date_from,date_to);
                 return data_out;
             }
             function filter_table_oneday(data,date,date_from,date_to) {
