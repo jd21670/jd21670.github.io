@@ -172,7 +172,7 @@
                 leg_scale.domain([0,12])
                          .range([0,map_size]);
 
-                var leg_circles = d3.select('#legend').append('g');
+                var leg_circles = d3.select('#legend g').append('g');
 
 				leg_circles.selectAll('circle')
 				    .data(colors)
