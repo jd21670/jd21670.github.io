@@ -408,7 +408,7 @@
                 svg.selectAll("mybar")
                     .data(data)
                     .join("rect")
-                    .attr("id", "bar"+d.id)
+                    .attr("id", function(d) { return "bar"+d.id})
 					.attr("x", d => x_scale(d.date))
 					.attr("y", d => y_scale(d.deaths))
 					.attr("width", (width/bar_count)*.95)
