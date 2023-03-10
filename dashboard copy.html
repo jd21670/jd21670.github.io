@@ -79,6 +79,7 @@
 
 				drawpumps(x_scaler,y_scaler);
 				label_streets(x_scaler,y_scaler);
+                draw_legend();
                 initZoom();
 
       		});
@@ -183,7 +184,7 @@
                 leg_scale.domain([1,12])
                          .range([0,300]);
 
-                var leg_circles = d3.select('#map g').append('g');
+                var leg_circles = d3.select('#legend g').append('g');
 
 				leg_circles.selectAll('circle')
 				    .data(labels)
