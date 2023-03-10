@@ -105,12 +105,27 @@
 					.style('fill', function(d) {return d.fill})
 					.attr('height',function(d) {return d.h})
 					.attr('width', function(d) {return d.w})
-                    .attr('text','WH')
 					.attr("transform", function (d) {return "rotate(" + d.r + "," + d.x + "," + d.y +")"})
 					.attr("x", function(d) {return d.x})
 					.attr("y", function(d) {return d.y})
 
-			};
+                var bldg_labs = d3.select('#map g').append('g');
+
+                bldg_labs.selectAll('text')
+
+                bldg_labs.selectAll("bldg_names")
+                    .data(labs)
+                    .enter()
+                    .append("text")
+                    .attr("id","bldg_names")
+                    .attr("font-family","arial")
+                    .attr("font-size","14px")
+                    .attr("transform", function (d) 
+                        { return "rotate(" + d.r + "," + d.x + "," + d.y +")"; })
+                    .attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y; })
+                    .text(function(d) { return d.name; });
+            }
 
 			function label_streets(x_scaler,y_scaler) {
 				var street_names = [
@@ -126,19 +141,19 @@
 				names.selectAll('text')
 
 				names.selectAll("street_names")
-          		.data(street_names)
-          		.enter()
-				.append("text")
-				.attr("id","street_names")
-				.attr("font-family","arial")
-				.attr("font-size","14px")
-				.attr("transform", function (d) 
-					{ return "rotate(" + d.r + ")"; })
-				.attr("x", function(d) { return d.x; })
-				.attr("y", function(d) { return d.y; })
-           		.text(function(d) { return d.name; });
-			}
-
+                    .data(street_names)
+                    .enter()
+                    .append("text")
+                    .attr("id","street_names")
+                    .attr("font-family","arial")
+                    .attr("font-size","14px")
+                    .attr("transform", function (d) 
+                        { return "rotate(" + d.r + ")"; })
+                    .attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y; })
+                    .text(function(d) { return d.name; });
+                }
+            
 
 			let zoom = d3.zoom()
                 .on('zoom', handleZoom);
