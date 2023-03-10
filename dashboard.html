@@ -10,14 +10,35 @@
 		<div class = "header">Cholera Outbreak of 1854</div>
         <div class="grid">
             <div class="g s1">
+                <h1>Map of Cholera Outbreak Deaths</h1>
 				<svg id = "map" width="600" height="600">
                     <g></g>
                 </svg>
+                <svg id = "legend" width="600" height="100">
+                    <g></g>
+                </svg>
 			</div>
-            <div class="g s2"><svg id = "agebar" width="300" height="300"></svg></div>
-            <div class="g s3" id = "table"><h1>Deaths by Age & Sex</h1></div>
-            <div class="g s4"><svg id = "daybar" width="600" height="300"></svg></div>
+            <div class="g s2">
+                <h1>Age Group & Sex Stacked Bar</h1>
+                <svg id = "agebar" width="300" height="300"></svg>
+            </div>
+            <div class="g s3" id = "table">
+                <h1>Age Group & Sex Table</Table></h1>
+            </div>
+            <div class="g s4">
+                <input type = "date" id="date_from" name="from" value="1854-08-19" min="1854-08-19" max="1854-09-29"></input>
+                <input type = "date" id="date_to"   name="to"   value="1854-09-29" min="1854-08-19" max="1854-09-29"></input>
+                <input type = "button" id = "date_apply" name= "apply" type="button" value="Apply Date Range"></input>
+                <input type = "button" id = "reset_all" name= "reset" type="button" value="Reset"></input>
+                <h1>Deaths by Day</h1>
+                <svg id = "daybar" width="600" height="300">
+                </svg>
+            </div>
        </div>
+       <h3>
+        <text><a href = "about.html">About</a></text>
+        <text><a href = "about.html">YouTube</a></text>
+       </h3>
 		
 		
 
@@ -28,20 +49,17 @@
 			var x_scaler = d3.scaleLinear();
 			var y_scaler = d3.scaleLinear();
 
+            var date_from = new Date("1854-08-19");
+            var date_to = new Date("1854-09-29");
+
 			x_scaler.domain([3,20]).range([0, map_size]);
 			y_scaler.domain([20,3]).range([0, map_size]);
 
 			d3.json("data/streets.json").then(function(street_data) {
 
                 const street_map = d3.select("#map g");
-/*
-				var x_scaler = d3.scaleLinear();
-				var y_scaler = d3.scaleLinear();
 
-				x_scaler.domain([3,20]).range([0, map_size]);
-				y_scaler.domain([20,3]).range([0, map_size]);
-*/
-				var line = d3.line()
+                var line = d3.line()
                     .x(d => x_scaler(d.x))
                     .y(d => y_scaler(d.y));
 
@@ -59,11 +77,10 @@
 
 				drawpumps(x_scaler,y_scaler);
 				label_streets(x_scaler,y_scaler);
+                draw_legend();
                 initZoom();
 
       		});
-
-
 
 			function drawpumps(x_scaler,y_scaler) {
 				d3.csv("data/pumps.csv").then(function(pumps) {
@@ -84,7 +101,10 @@
 				
 				var labs = [{x: 270, y: 220, r: -25, fill: '#dddddd', w: '40px', h: '40px', name: 'WH'},
 							{x: 372, y: 277, r: -27, fill: '#aaaaaa', w: '15px', h: '30px', name: 'BH'}]
-				
+
+                var labs2 = [{x: 285, y: 240, r: -25, fill: '#dddddd', w: '40px', h: '40px', name: 'W.H.'},
+							{x: 376, y: 276, r: 63, fill: '#aaaaaa', w: '15px', h: '30px', name: 'Brw.'}]
+
 				var work_house = d3.select('#map g').append('g');
 
 				work_house.selectAll('rect')
@@ -98,7 +118,23 @@
 					.attr("x", function(d) {return d.x})
 					.attr("y", function(d) {return d.y})
 
-			};
+                var bldg_labs = d3.select('#map g').append('g');
+
+                bldg_labs.selectAll('text')
+
+                bldg_labs.selectAll("bldg_names")
+                    .data(labs2)
+                    .enter()
+                    .append("text")
+                    .attr("id","bldg_names")
+                    .attr("font-family","arial")
+                    .attr("font-size","14px")
+                    .attr("transform", function (d) 
+                        { return "rotate(" + d.r + "," + d.x + "," + d.y +")"; })
+                    .attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y; })
+                    .text(function(d) { return d.name; });
+            }
 
 			function label_streets(x_scaler,y_scaler) {
 				var street_names = [
@@ -114,19 +150,75 @@
 				names.selectAll('text')
 
 				names.selectAll("street_names")
-          		.data(street_names)
-          		.enter()
-				.append("text")
-				.attr("id","street_names")
-				.attr("font-family","arial")
-				.attr("font-size","14px")
-				.attr("transform", function (d) 
-					{ return "rotate(" + d.r + ")"; })
-				.attr("x", function(d) { return d.x; })
-				.attr("y", function(d) { return d.y; })
-           		.text(function(d) { return d.name; });
-			}
+                    .data(street_names)
+                    .enter()
+                    .append("text")
+                    .attr("id","street_names")
+                    .attr("font-family","arial")
+                    .attr("font-size","14px")
+                    .attr("transform", function (d) 
+                        { return "rotate(" + d.r + ")"; })
+                    .attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y; })
+                    .text(function(d) { return d.name; });
+            }
+            
+            function draw_legend() {
+                var labels = [{pos: 1, y: 10, color: "#00CCFF", label: "M: <10"},
+                              {pos: 2, y: 10, color: "#00A3FF", label: "M: 11-20"},
+                              {pos: 3, y: 10, color: "#007AFF", label: "M: 21-40"},
+                              {pos: 4, y: 10, color: "#0052FF", label: "M: 41-60"},
+                              {pos: 5, y: 10, color: "#0000FF", label: "M: 61-80"},
+                              {pos: 6, y: 10, color: "#0700C4", label: "M: >80"},
+                              {pos: 1, y: 30, color: "#FFABAB", label: "F: <10"},
+                              {pos: 2, y: 30, color: "#FF7979", label: "F: 11-20"},
+                              {pos: 3, y: 30, color: "#FA0000", label: "F: 21-40"},
+                              {pos: 4, y: 30, color: "#DA0000", label: "F: 41-60"},
+                              {pos: 5, y: 30, color: "#AC0000", label: "F: 61-80"},
+                              {pos: 6, y: 30, color: "#8E0000", label: "F: >80"}];
 
+
+                var leg_scale = d3.scaleLinear();
+                leg_scale.domain([1,6])
+                         .range([75,475]);
+
+                var leg_circles = d3.select('#legend g').append('g');
+
+				leg_circles.selectAll('circle')
+				    .data(labels)
+                    .enter()
+                    .append('circle')
+                    .style('fill', function(d) {return d.color})
+                    .attr('r', '5px')
+                    .attr('cx', function(d) {return leg_scale(d.pos)})
+                    .attr('cy', function(d) {return d.y})
+
+                var leg_titles = d3.select('#legend g').append('g');
+
+                leg_circles.selectAll('leg_text')
+                    .data(labels)
+                    .enter()
+                    .append('text')
+                    .attr("id","leg_text")
+                    .attr("font-family","arial")
+                    .attr("font-size","14px")
+                    .attr("x", function(d) { return leg_scale(d.pos)+10; })
+                    .attr("y", function(d) { return d.y+5; })
+                    .text(function(d) { return d.label; });
+
+                var pump_box = d3.select('#legend g').append('g');
+                
+                pump_box.selectAll('rect')
+                    .append('rect')
+                    .attr('height','5px')
+                    .attr('width','5px')
+                    .attr('x', 300)
+                    .attr('y',80);
+
+
+
+
+            }
 
 			let zoom = d3.zoom()
                 .on('zoom', handleZoom);
@@ -134,14 +226,11 @@
             function handleZoom(e) {
                 d3.select('#map g')
                     .attr('transform', e.transform);
-                
-                console.log("hello")
             }
 
             function initZoom() {
                 d3.select('#map')
                     .call(zoom);
-                console.log("hi there")
 			}
 
 			d3.csv("data/deathdays.csv", ({date, deaths}) => ({date: new Date(date+"-1854"), deaths: +deaths})).then(function(death_days) {
@@ -154,14 +243,12 @@
                         var k = 0; //counter
                         var det_len = death_details.length;
                         var day_len = death_days.length;
-                        //console.log(death_days);
 
                         while (j < day_len) {
-                            //death_details[i].new = "test";
-                            //console.log(death_details[i].gender);
                             deaths = death_days[j].deaths;
-
-
+                            death_days[j].on_off = 1;
+                            death_days[j].id = j;
+                            console.log(death_days[j])
                             for (k = 0; k < deaths; k++) {
                                 death_details[i].date = death_days[j].date;
                                 death_details[i].daynum = j;
@@ -178,53 +265,119 @@
                                 else if (death_details[i].age == 4) {death_details[i].agegroup = "61-80"}
                                 else if (death_details[i].age == 5) {death_details[i].agegroup = ">80"}
 
+                                //create sex+age key for ordinal color scale
+                                death_details[i].colorkey = death_details[i].gender*10+death_details[i].age;
+                                //console.log(death_details[i].colorkey)
+
 
 
                                 i++;
                             }
                             j++;
                         }
-
+                        
+                        console.log(death_days)
                         death_days.deaths = parseInt(death_days.deaths);
-                        draw_daybar(death_days);
+                        draw_daybar(death_days, death_details,date_from, date_to);
                         draw_agebar(death_details);
 						draw_deaths(death_details, x_scaler, y_scaler);
-                    });
-                });
 
-			function draw_deaths(death_details,x_scaler,y_scaler) {
+
+                        });
+                    });
+                
+
+
+			function draw_deaths(data,x_scaler,y_scaler) {
+                var color_key = [0,1,2,3,4,5,10,11,12,13,14,15]
+                var colors = ["#00CCFF","#00A3FF","#007AFF","#0052FF","#0000FF","#0700C4","#FFABAB","#FF7979","#FA0000","#DA0000","#AC0000","#8E0000"]
+
+                var color_scaler = d3.scaleOrdinal();
+                color_scaler.domain(color_key).range(colors);
+
+
 				var death_points = d3.select('#map g').append('g');
 
 				death_points.selectAll('circle')
-				.data(death_details)
-				.enter()
-				.append('circle')
-				.style('fill','black')
-				.attr('r', '3px')
-				.attr('cx', function(d) {return x_scaler(d.x)})
-				.attr('cy', function(d) {return y_scaler(d.y)})
-
-
+                    .data(data)
+                    .enter()
+                    .append('circle')
+                    .style('fill', function(d) {return color_scaler(d.colorkey)})
+                    .attr('id','deaths')
+                    .attr('r', '3px')
+                    .attr('cx', function(d) {return x_scaler(d.x)})
+                    .attr('cy', function(d) {return y_scaler(d.y)})
 			}
 
+            function clear_graphs() {
+                //d3.selectAll("circle").remove();
+                d3.selectAll("#deaths").remove();
+                d3.selectAll("#grpbar").remove();
+                d3.selectAll("table").remove();
+            }
 
-            function draw_daybar (death_days) {
+            function filter_base(data,date_from,date_to) {
+                data_out = [];
+                //temp = Date(date_to.setDate(date_to.getDate() + 1));
+                for (i=0; i<data.length; i++) {
+                    if (data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
+                }
+                console.log(data_out);
+                return data_out;
+
+            }
+            
+            function filter_table(data,date,date_from,date_to) {
+                data_out = [];
+                //temp = Date(date_to.setDate(date_to.getDate() + 1));
+                for (i=0; i<data.length; i++) {
+                    if (data[i].date <= date && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
+                }
+                //console.log(date_from,date_to);
+                return data_out;
+            }
+            function filter_table_oneday(data,date,date_from,date_to) {
+                data_out = [];     
+                //temp = Date(date_to.setDate(date_to.getDate() + 1));
+                for (i=0; i<data.length; i++) {
+                    if (data[i].date == date  && data[i].date >= date_from && data[i].date <= date_to) {data_out.push(data[i])}
+                }
+                return data_out;
+            }
+/*
+            function recolor(data, date_from, date_to) {
+                for (i=0; i<data.length;i++) {
+                    if (data[i].date >= date_from && data[i].date <= date_to) {data[i].on_off = 1;
+                                                                         console.log(1)}
+                    else {data[i].on_off = 0;}
+                    //console.log(data[i].on_off)
+                }
+                //console.log(date_from, date_to)
+                console.log(data)
+
+                var on_off = d3.scaleOrdinal();
+                on_off.domain([0,1])
+                      .range('#aaaaaa','#8200BC');
+
+                d3.select("#daybar").selectAll('rect')
+                    .data(data)
+                    .attr('fill', function(d) {return on_off(d.on_off)});
+
+            }
+*/
+
+            function draw_daybar(data, detail_data, date_from,date_to) {
                 var margin = {top: 50, right: 30, bottom: 50, left: 30},
                     width = 600 - margin.left - margin.right,
                     height = 300 - margin.top - margin.bottom;
 
-                bar_max = d3.max(death_days, function (d) {return d.deaths;});
-                date_min = d3.min(death_days, function (d) {return d.date;});
-                date_max = d3.max(death_days, function (d) {return d.date;});
-                //date_first = death_days[0].date;
-                //date_last
-                //console.log("max = ", bar_max);
-                bar_count = death_days.length;
-                //console.log("count = ", bar_count);
-                console.log(date_min, date_max);
+                bar_max = d3.max(data, function (d) {return d.deaths;});
+                date_min = d3.min(data, function (d) {return d.date;});
+                date_max = d3.max(data, function (d) {return d.date;});
+                bar_count = data.length;
 
+                console.log(data)
 
-                // append the svg object to the body of the page
                 var svg = d3.select("#daybar")
                     .append("svg")
                     .attr("width", width + margin.left + margin.right)
@@ -253,57 +406,96 @@
                     .call(y_axis);
                 
                 svg.selectAll("mybar")
-                    .data(death_days)
+                    .data(data)
                     .join("rect")
+                    .attr("id", function(d) { return "bar"+d.id})
 					.attr("x", d => x_scale(d.date))
 					.attr("y", d => y_scale(d.deaths))
 					.attr("width", (width/bar_count)*.95)
 					.attr("height", d => height - y_scale(d.deaths))
-					.attr("fill", "#aaaaaa")
-					.on("click", function(d) {console.log('the fuck just happened')})
+					.attr("fill", "#8200BC")
+					.on("click", function(d,m) {
+                        clear_graphs()
+                        new_data = filter_table_oneday(detail_data, m.date, date_from, date_to)
+                        draw_agebar(new_data)
+                        draw_deaths(new_data,x_scaler,y_scaler)
+                    })
+                    .on("mouseover", function(d,m) {
+                        clear_graphs()
+                        //console.log(date_to)
+                        new_data = filter_table(detail_data, m.date, date_from, date_to)
+                        draw_agebar(new_data)
+                        draw_deaths(new_data,x_scaler,y_scaler)
+                    })
 
+                    date_apply.addEventListener("click", function() {
+                        date_from = new Date(document.getElementById("date_from").value);
+                        date_to = new Date(document.getElementById("date_to").value);
 
-                svg.append("text")
-                    .attr("x", (width / 2))             
-                    .attr("y", 0 - (margin.top / 2))
-                    .attr("text-anchor", "middle")  
-                    .style("font-size", "16px")
-                    .style("font-family", "Arial")
-                    .text("Deaths by Day");
+                        date_to.setDate(date_to.getDate() + 1);
 
+                        clear_graphs()
+                        new_data = filter_base(detail_data,date_from,date_to);
+                        draw_agebar(new_data)
+                        draw_deaths(new_data,x_scaler,y_scaler)
+                    });
 
-               
+                    reset_all.addEventListener("click", function() {
+                        var date_from = new Date("1854-08-19");
+                        var date_to = new Date("1854-09-29")
+
+                        document.getElementById("date_from").value = "1854-08-19";
+                        document.getElementById("date_to").value = "1854-09-29";
+
+                        clear_graphs()
+
+                        new_data = filter_base(detail_data,date_from,date_to);
+                        draw_agebar(new_data)
+                        draw_deaths(new_data,x_scaler,y_scaler)
+                    });
+
+        
+                
             }
 
-            function draw_agebar (death_details) {
-                var margin = {top: 50, right: 30, bottom: 50, left: 30},
+
+
+            function calc_table(data) {
+                var age_data = [
+                        { Age: "<10", Male: 0, Female: 0 },
+                        { Age: "11-20", Male: 0, Female: 0 },
+                        { Age: "21-40", Male: 0, Female: 0 },
+                        { Age: "41-60", Male: 0, Female: 0 },
+                        { Age: "61-80", Male: 0, Female: 0 },
+                        { Age: ">80", Male: 0, Female: 0 }
+                        ];
+
+                    for (i=0;i<data.length; i++) {
+                        age_data[data[i].age].Male+=data[i].male;
+                        age_data[data[i].age].Female+=data[i].female;
+                    };
+                    
+                return age_data;
+            }
+
+            function draw_agebar (data) {
+                var margin = {top: 20, right: 30, bottom: 75, left: 30},
                     width = 300 - margin.left - margin.right,
                     height = 300 - margin.top - margin.bottom;
                 
-                console.log(death_details);
+                age_data = calc_table(data);
+                 
+                function get_max(data) {
+                    var bmax = 0;
+                    for (i=0;i<data.length;i++) {
+                        test = data[i].Male + data[i].Female;
+                        if (test > bmax) {bmax = test;}
+                    }
+                    return bmax;
+                }
 
-                var age_data = [
-                    { Age: "<10", Male: 0, Female: 0 },
-                    { Age: "11-20", Male: 0, Female: 0 },
-                    { Age: "21-40", Male: 0, Female: 0 },
-                    { Age: "41-60", Male: 0, Female: 0 },
-                    { Age: "61-80", Male: 0, Female: 0 },
-                    { Age: ">80", Male: 0, Female: 0 }
-                    ];
+                bar_max = get_max(age_data)*1.1;
 
-                for (i=0;i<death_details.length; i++) {
-                    //console.log(death_details[i].agegroup);
-                    age_data[death_details[i].age].Male+=death_details[i].male;
-                    age_data[death_details[i].age].Female+=death_details[i].female;
-
-                };
-                
-                console.log(age_data);
-                
-                
-                
-                bar_max = 200;
-                  
                 var stack = d3.stack().keys([ "Male", "Female"]);
       
                 var stackedSeries = stack(age_data);
@@ -314,8 +506,8 @@
 
                 var colors = d3.scaleOrdinal();
                 colors.domain(["Male","Female"])
-                    .range(["blue","pink"]);
-
+                    .range(["#0052FF","#DA0000"]);
+                
                 var y_scale = d3.scaleLinear();
                 y_scale.domain([0,bar_max]).range([height,0]);
 
@@ -331,11 +523,13 @@
 
                 svg.append("g")
                     .call(x_axis)
+                    .attr("id","grpbar")
                     .attr("transform", "translate(0," + height +")");
 
 
                 svg.append("g")
-                    .call(y_axis);
+                    .call(y_axis)
+                    .attr("id","grpbar");
                
                 // Show the bars
                 svg.append("g")
@@ -348,12 +542,17 @@
                     // enter a second time = loop subgroup per subgroup to add all rectangles
                     .data(function(d) { return d; })
                     .enter().append("rect")
+                        .attr("id", "grpbar")
                         .attr("x", function(d) { return x_scale(d.data.Age); })
                         .attr("y", function(d) { return y_scale(d[1]); })
                         .attr("height", function(d) { return y_scale(d[0]) - y_scale(d[1]); })
                         .attr("width",(width/bar_count)*.95)
+                
+                svg.append("rect").attr("x",40).attr("y",228).attr("height", 15).attr("width",15).style("fill", "blue")
+                svg.append("rect").attr("x",165).attr("y",228).attr("height", 15).attr("width",15).style("fill", "pink")
+                svg.append("text").attr("x", 58).attr("y", 240).text("Male").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
+                svg.append("text").attr("x", 183).attr("y", 240).text("Female").attr("id", "grpbar").style("font-size", "15px").style("font-family","Arial").attr("alignment-baseline","bottom")
 
-                console.log(stackedSeries);
                 draw_table(age_data);
             }
 
@@ -369,8 +568,6 @@
 
                 table_data[6] = {Age: "Total", Male: temp.Male, Female: temp.Female, Total: temp.Total};
 
-                console.log(table_data)
-
                 var columns = Object.keys(table_data[0]);
 
                 var rows  = table_data
@@ -383,13 +580,15 @@
                     .selectAll('th')
                     .data(columns).enter()
                     .append('th')
+                        .attr("id","tabletext")
                         .text(function (d) { return d; });
 
                 	// create a row for each object in the data
                 var rows = tbody.selectAll('tr')
                 .data(table_data)
                 .enter()
-                .append('tr');
+                .append('tr')  
+                .attr("id","tabletext");
 
                 // create a cell in each row for each column
                 var cells = rows.selectAll('td')
@@ -400,8 +599,9 @@
                 })
                 .enter()
                 .append('td')
+                    .attr('id','tabletext')
                     .text(function (d) { return d.value; });
-            }
+                }
 		</script>
 	</body>
 </html>
