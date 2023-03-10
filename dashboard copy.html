@@ -182,6 +182,9 @@
                                 else if (death_details[i].age == 4) {death_details[i].agegroup = "61-80"}
                                 else if (death_details[i].age == 5) {death_details[i].agegroup = ">80"}
 
+                                death_details[i].colorkey = death_details[i].gender*10+death_details[i].age;
+                                console.log(death_details[i].colorkey)
+
 
 
                                 i++;
