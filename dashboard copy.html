@@ -186,7 +186,7 @@
                 var leg_circles = d3.select('#legend g').append('g');
 
 				leg_circles.selectAll('circle')
-				    .data(colors)
+				    .data(labels)
                     .enter()
                     .append('circle')
                     .style('fill', function(d) {return d.color})
