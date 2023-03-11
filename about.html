@@ -1,3 +1,6 @@
+<p><strong>Introduction:</strong></p>
+<p>My name is Jamie Daugherty, and I designed and built the visualization for H517, Spring 2023.</p>
+<nl>
 <p><strong>Design Process:</strong></p>
 <p>The first step in the design process was to evaluate the data available and the scope of the requirements.  This led me to conclude the following:</p>
 <ul>
@@ -15,8 +18,8 @@
 <p><strong>Design Choices:</strong></p>
 <p><span style="text-decoration: underline;">Overall Arrangement</span>:  I chose a simple grid layout to keep everything organized, and I wanted to keep the overall dimensions of the report to a small enough size to fit most screens.  Since much of the detailed analysis happens with the map, I chose to make it the largest of the graphs.  I chose the map to be the feature of the dashboard as this project relies on the map itself develop by Snow.  Since the death by day timeline is featured as the interactive controller for the other visualizations, I put it on the bottom right as this is a good location for right-handed people (as well as anyone using a mouse with their right hand).  It is an intuitive layout.</p>
 <p><span style="text-decoration: underline;">Map Chart</span>: The streets, work house, and brewery were drawn in grey because I wanted to draw attention to the points that are placed on the map that represent deaths.  These points are presented in color according to the age and sex of the individual.  To codify male vs female, I used blue and red respectively.  I chose these colors because, at least in the United States, they are colors associated with each gender.  To represent age, I used a chromatic scale with lighter shades of the respective color representing younger victims, and darker shades representing older victims.</p>
-<p><span style="text-decoration: underline;">Age Group &amp; Sex Stacked Bar</span>:  I chose a stacked bar chart because on the whole the split between male and female victims was nearly 50/50, and so losing visual cues here was less important than showing the distribution by death (although a few age buckets show statistically significant differences between male/female).  Again, I tied the colors for male and female to blue and red respectively to match the map chart.</p>
-<p><span style="text-decoration: underline;">Age Group &amp; Sex Table</span>: I chose plain formatting for this table as I felt anything else would detract from the data being presented.  I included this to add detail to the corresponding stacked bar chart.</p>
+<p><span style="text-decoration: underline;">Age Group & Sex Stacked Bar</span>:  I chose a stacked bar chart because on the whole the split between male and female victims was nearly 50/50, and so losing visual cues here was less important than showing the distribution by death (although a few age buckets show statistically significant differences between male/female).  Again, I tied the colors for male and female to blue and red respectively to match the map chart.</p>
+<p><span style="text-decoration: underline;">Age Group  & Sex Table</span>: I chose plain formatting for this table as I felt anything else would detract from the data being presented.  I included this to add detail to the corresponding stacked bar chart.</p>
 <p><span style="text-decoration: underline;">Deaths by Day</span>: For records not active in the remaining visualizations, they are colored grey.  For those that are active, I chose purple since it's a blend of blue and red.  The interactivity built into this graph is fourfold:</p>
 <ul>
 <li>Reset button &ndash; resets dates to default range</li>
@@ -31,10 +34,9 @@
 <p>Another interesting view is looking at the total deaths by age and sex.  From the totals, its clear that the preponderance of deaths were in the elderly and in young children.  It is interesting to see the difference in death rates between sexes, however, between the ages of 11 and 60.  Between 11 and 40, men seem to be more prone to succumbing to Cholera, but between 41-60, women are.  The number seems to be statistically significant.  There must be some underlying health or population factors that lead to this imbalance.</p>
 <p><img src="Picture2."></p>
 <p><strong>References:</strong></p>
-<p><span style="text-decoration: underline;">Datasets &amp; Requirements</span>:</p>
+<p><span style="text-decoration: underline;">Datasets  & Requirements</span>:</p>
 <p><a href="https://khreda.com/teaching/spring23/H517/project1/" target="_blank" rel="noopener">https://khreda.com/teaching/spring23/H517/project1/</a></p>
 <p><span style="text-decoration: underline;">Other Resources</span>:</p>
 <p>The D3 Graph Gallery (2018).<a href="https://d3-graph-gallery.com/" target="_blank" rel="noopener">https://d3-graph-gallery.com</a>. Retrieved: 03/01/2023.</p>
 <p>Bostock, Mike. Data Driven Documents (2023).<a href="https://d3js.org/" target="_blank" rel="noopener">https://d3js.org/</a>. Retrieved: 03/01/2023.</p>
 <p>Mozilla. Basic Concepts of Grid Layout (2023).<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout</a>. Retrieved: 03/01/2023</p>
-<p>Google Doc to HTML Converter (2023). <a href="https://www.gdoctohtml.com/">https://www.gdoctohtml.com/</a>. Retrieved: 03/10/2023.</p>
