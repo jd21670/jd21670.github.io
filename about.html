@@ -2,11 +2,11 @@
 <p>The first step in the design process was to evaluate the data available and the scope of the requirements.  This led me to conclude the following:</p>
 <ul>
 <li>Some data would need to be collected from elsewhere such as street names, and their positions.  These I extrapolated from the original John Snow map.</li>
-<li>The data would need to be processed to associate a date w/ each of the rows in the &ldquo;deathdays.csv&rdquo; file to enable the interactivity required</li>
+<li>The data would need to be processed to associate a date w/ each of the rows in the deathdays.csv file to enable the interactivity required</li>
 </ul>
 <p>The next step in the design process was to choose the appropriate visualizations for the data based on these requirements.</p>
 <ul>
-<li>Both the map and the death by day timeline were explicitly requested, so there was little ambiguity there.  I did choose a bar chart for the death by day information for two reasons: a line chart wouldn&rsquo;t be appropriate because the data is not continuous, and because the bars allow easier interaction.</li>
+<li>Both the map and the death by day timeline were explicitly requested, so there was little ambiguity there.  I did choose a bar chart for the death by day information for two reasons: a line chart wouldn't be appropriate because the data is not continuous, and because the bars allow easier interaction.</li>
 <li>To show the distribution of deaths by age group and sex, I chose to include both a stacked bar chart, for a visual representation; and a table, to show the audience the detailed information as well as the totals.</li>
 </ul>
 <p>Since I did a good job planning it out, my initial design is very similar to my final product.  I have quite a bit of experience developing dashboards using other tools like PowerBI, SAS, and Google Chart APIs, so developing a layout was straightforward.  The only unknown was the capabilities of d3 (and my ability to master it).  The date time selection as well as several buttons to reset, and set date ranges were added to the initial design.</p>
@@ -17,7 +17,7 @@
 <p><span style="text-decoration: underline;">Map Chart</span>: The streets, work house, and brewery were drawn in grey because I wanted to draw attention to the points that are placed on the map that represent deaths.  These points are presented in color according to the age and sex of the individual.  To codify male vs female, I used blue and red respectively.  I chose these colors because, at least in the United States, they are colors associated with each gender.  To represent age, I used a chromatic scale with lighter shades of the respective color representing younger victims, and darker shades representing older victims.</p>
 <p><span style="text-decoration: underline;">Age Group &amp; Sex Stacked Bar</span>:  I chose a stacked bar chart because on the whole the split between male and female victims was nearly 50/50, and so losing visual cues here was less important than showing the distribution by death (although a few age buckets show statistically significant differences between male/female).  Again, I tied the colors for male and female to blue and red respectively to match the map chart.</p>
 <p><span style="text-decoration: underline;">Age Group &amp; Sex Table</span>: I chose plain formatting for this table as I felt anything else would detract from the data being presented.  I included this to add detail to the corresponding stacked bar chart.</p>
-<p><span style="text-decoration: underline;">Deaths by Day</span>: For records not active in the remaining visualizations, they are colored grey.  For those that are active, I chose purple since it&rsquo;s a blend of blue and red.  The interactivity built into this graph is fourfold:</p>
+<p><span style="text-decoration: underline;">Deaths by Day</span>: For records not active in the remaining visualizations, they are colored grey.  For those that are active, I chose purple since it's a blend of blue and red.  The interactivity built into this graph is fourfold:</p>
 <ul>
 <li>Reset button &ndash; resets dates to default range</li>
 <li>Apply Date Range button &ndash; applies the selected date range to the graph</li>
